@@ -49,7 +49,7 @@ export const TeamPage = () => {
         >
           <PageHeader 
             title="Our Team" 
-            subtitle="Meet the experts behind our data science solutions"
+            subtitle="Meet the experts behind our data science solutions at DataQuest Solutions"
             backgroundImage="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2670&auto=format&fit=crop"
           />
           
@@ -57,7 +57,7 @@ export const TeamPage = () => {
             <div className="text-center mb-12">
               <h1 className="text-4xl font-bold text-primary mb-4">Our Team</h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Meet the talented individuals who make our data science solutions possible
+                Meet the talented individuals who make our data science solutions at DataQuest Solutions possible
               </p>
             </div>
             

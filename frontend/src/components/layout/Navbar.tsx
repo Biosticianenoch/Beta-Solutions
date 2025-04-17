@@ -69,7 +69,7 @@ const Navbar = ({ onMenuClick }: NavbarProps) => {
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center">
           <Link to="/" className="text-xl font-bold text-blue-600">
-            Beta Solutions
+            DataQuest Solutions
           </Link>
         </div>
 

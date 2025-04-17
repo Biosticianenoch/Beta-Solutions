@@ -1,7 +1,7 @@
 {
   "name": "data-science-hub-backend",
   "version": "1.0.0",
-  "description": "Backend for Beta Solutions",
+  "description": "Backend for DataQuest Solutions",
   "main": "dist/index.js",
   "scripts": {
     "start": "node dist/index.js",

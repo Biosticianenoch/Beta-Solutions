@@ -27,7 +27,7 @@ router.get('/stats', auth, async (req, res) => {
           id: "2",
           type: "team_update",
           title: "New Team Member",
-          description: "Sarah Johnson joined Project Beta",
+          description: "Sarah Johnson joined Project DataQuest",
           timestamp: new Date(Date.now() - 86400000).toISOString()
         },
         {

@@ -1,12 +1,12 @@
-# Beta Solutions
+# DataQuest Solutions
 
-Beta Solutions is a modern platform empowering businesses, organizations, and individuals with cutting-edge data science education, analytics services, and a collaborative community. Our mission is to accelerate innovation and informed decision-making through accessible, high-quality learning and professional solutions.
+DataQuest Solutions is a modern platform empowering businesses, organizations, and individuals with cutting-edge data science education, analytics services, and a collaborative community. Our mission is to accelerate innovation and informed decision-making through accessible, high-quality learning and professional solutions.
 
 ---
 
 ## 🚀 Project Overview
 
-Beta Solutions offers:
+DataQuest Solutions offers:
 - Interactive data science courses and certifications
 - Team and client management for analytics projects
 - Real-time progress tracking and performance analytics
@@ -229,7 +229,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Authors & Maintainers
 
-- Beta Solutions Team (see /frontend/src/pages/Index.tsx for team listing)
+- DataQuest Solutions Team (see /frontend/src/pages/Index.tsx for team listing)
 - See GitHub contributors for more
 
 ## 🙏 Acknowledgments
@@ -240,7 +240,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-For support, open an issue or email: support@betasolutions.com
+For support, open an issue or email: support@dataquestsolutions.com
 
 
 For support, email support@datasciencehub.com or join our community forum.
