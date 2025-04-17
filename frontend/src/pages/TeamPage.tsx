@@ -9,7 +9,7 @@ const teamMembers = [
     name: 'Ogechi Daniel Koel',
     role: 'Biostatistician',
     bio: 'I am an apt Biostatistician determined in applying various statistical methods to inform decisions in medicine, public health and science.',
-    image: '/images/team/ogechi.jpg',
+    image: '/pictures/ogechi koel.jpg',
     email: 'ogechikoel@gmail.com',
     linkedin: 'https://www.linkedin.com/in/ogechi-koel-4b90b92ab'
   },
@@ -17,7 +17,7 @@ const teamMembers = [
     name: 'Nobert Wafula',
     role: 'Data Analyst',
     bio: 'I\'m a data analyst passionate about turning data into actionable insights and building predictive models that drive smart, impactful decisions.',
-    image: '/images/team/nobert.jpg',
+    image: '/pictures/nobert wafula.jpg',
     email: 'wakasalanobert5746@gmail.com',
     linkedin: 'https://www.linkedin.com/in/nobert-wafula-b7b1782a2'
   },
@@ -25,7 +25,7 @@ const teamMembers = [
     name: 'Enock Bereka',
     role: 'Data Scientist',
     bio: 'I\'m a passionate data scientist driven by curiosity and a commitment to lifelong learning. I thrive on exploring new tools and techniques to uncover insights and solve real-world problems. My goal is to turn data into impactful solutions that drive informed decision-making and meaningful change.',
-    image: '/images/team/enock.jpg',
+    image: '/pictures/Enock Bereka.jpg',
     email: 'enochosenwafulah@gmail.com',
     linkedin: 'https://www.linkedin.com/in/enock-bereka'
   },
@@ -33,7 +33,7 @@ const teamMembers = [
     name: 'Timothy Achala',
     role: 'AI Enthusiast & Computer Scientist',
     bio: 'I am an AI Enthusiast and computer scientist with a deep passion for data. My work lies at the intersection of theory and real-world application—leveraging mathematical rigor and computational power to extract meaningful insights from complex datasets. With a strong foundation in algorithms, statistics, and machine learning, I specialize in transforming raw data into actionable intelligence.',
-    image: '/images/team/timothy.jpg',
+    image: '/pictures/Timothy Achalla.jpg',
     email: 'timothyachala695@gmail.com',
     linkedin: 'https://www.linkedin.com/in/timothy-a-1bb74127b'
   }

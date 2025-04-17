@@ -1,10 +1,23 @@
 # Beta Solutions
 
-A comprehensive platform for data science education, project management, and community collaboration.
+Beta Solutions is a modern platform empowering businesses, organizations, and individuals with cutting-edge data science education, analytics services, and a collaborative community. Our mission is to accelerate innovation and informed decision-making through accessible, high-quality learning and professional solutions.
 
-## 🌟 Features
+---
 
-### 🎓 Learning Platform
+## 🚀 Project Overview
+
+Beta Solutions offers:
+- Interactive data science courses and certifications
+- Team and client management for analytics projects
+- Real-time progress tracking and performance analytics
+- Community features for networking and collaboration
+- Secure, role-based access for admins, clients, and learners
+
+---
+
+## 🌟 Key Features
+
+### 🎓 Learning Platform & Courses
 - **Course Management**
   - Interactive course catalog
   - Progress tracking
@@ -20,7 +33,7 @@ A comprehensive platform for data science education, project management, and com
   - Performance analytics
   - Course completion tracking
 
-### 👥 User Management
+### 👥 User & Client Management
 - **Role-Based Access**
   - Admin dashboard
   - Client portal
@@ -34,7 +47,7 @@ A comprehensive platform for data science education, project management, and com
   - Protected routes
   - Session management
 
-### 📊 Project Management
+### 📊 Project & Team Management
 - **Project Features**
   - Project creation and tracking
   - Team collaboration
@@ -56,7 +69,7 @@ A comprehensive platform for data science education, project management, and com
   - Usage statistics
   - Downloadable reports
 
-### 👥 Community Features
+### 👥 Community & Collaboration
 - **Collaboration Tools**
   - Team workspaces
   - Resource sharing
@@ -64,7 +77,26 @@ A comprehensive platform for data science education, project management, and com
   - Blog platform
   - Knowledge base
 
-## 🚀 Getting Started
+## 🛠️ Tech Stack
+
+### Frontend
+- React + TypeScript
+- Vite
+- Tailwind CSS
+- shadcn/ui
+- React Router
+- React Query
+- Lucide Icons
+
+### Backend (if present)
+- Node.js + Express
+- MongoDB
+- JWT Authentication
+- Socket.IO
+
+---
+
+## 🚦 Getting Started
 
 ### Prerequisites
 - Node.js (v14 or higher)
@@ -75,47 +107,43 @@ A comprehensive platform for data science education, project management, and com
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/data-science-hub.git
-cd data-science-hub
+git clone <YOUR_GIT_URL>
+cd Beta-Solutions
 ```
 
 2. Install dependencies
 ```bash
-# Install backend dependencies
-cd backend
-npm install
-
 # Install frontend dependencies
-cd ../frontend
+cd frontend
 npm install
 ```
 
 3. Set up environment variables
 ```bash
-# Backend (.env)
+# Frontend (.env)
+VITE_API_URL=http://localhost:5000
+
+# (Optional) Backend (.env)
 PORT=5000
 MONGODB_URI=your_mongodb_uri
 JWT_SECRET=your_jwt_secret
-
-# Frontend (.env)
-VITE_API_URL=http://localhost:5000
 ```
 
 4. Start the development servers
 ```bash
-# Start backend server
-cd backend
-npm run dev
-
 # Start frontend server
 cd frontend
 npm run dev
+
+# (Optional) Start backend server
+cd ../backend
+npm run dev
 ```
 
-## 🏗️ Project Structure
+## 📁 Project Structure
 
 ```
-data-science-hub/
+Beta-Solutions/
 ├── backend/
 │   ├── src/
 │   │   ├── controllers/
@@ -127,18 +155,18 @@ data-science-hub/
 │   └── .env
 ├── frontend/
 │   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── hooks/
-│   │   ├── context/
-│   │   ├── lib/
+│   │   ├── components/    # Reusable UI components
+│   │   ├── pages/         # Page-level components
+│   │   ├── hooks/         # Custom React hooks
+│   │   ├── context/       # React context providers
+│   │   ├── lib/           # Utility libraries
 │   │   └── utils/
 │   ├── package.json
 │   └── .env
 └── README.md
 ```
 
-## 🛠️ Built With
+## 🧩 Main Packages Used
 
 ### Frontend
 - React
@@ -156,7 +184,7 @@ data-science-hub/
 - JWT Authentication
 - Socket.IO
 
-## 📱 Pages
+## 🖥️ Main Pages
 
 ### Public Pages
 - Home
@@ -176,7 +204,7 @@ data-science-hub/
 - Progress
 - Analytics
 
-## 🔒 Security Features
+## 🔒 Security & Best Practices
 
 - Role-based access control
 - JWT authentication
@@ -186,6 +214,8 @@ data-science-hub/
 - Session management
 
 ## 🤝 Contributing
+
+We welcome contributions! To contribute:
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
@@ -197,9 +227,10 @@ data-science-hub/
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👥 Authors
+## 👥 Authors & Maintainers
 
-- Your Name - Initial work
+- Beta Solutions Team (see /frontend/src/pages/Index.tsx for team listing)
+- See GitHub contributors for more
 
 ## 🙏 Acknowledgments
 
@@ -208,5 +239,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - All contributors and supporters
 
 ## 📞 Support
+
+For support, open an issue or email: support@betasolutions.com
+
 
 For support, email support@datasciencehub.com or join our community forum.
