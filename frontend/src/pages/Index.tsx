@@ -61,19 +61,19 @@ const testimonials = [
   {
     name: 'Dan Barasa',
     role: 'Data Science Consultant',
-    image: '/images/testimonials/dan-barasa.jpg',
+    image: '/pictures/Dan Barasa.jpg',
     quote: 'Beta Solutions has been instrumental in transforming our data analytics capabilities. Their expertise and guidance have helped us make data-driven decisions that have significantly improved our business outcomes.'
   },
   {
     name: 'Martha Kioko',
     role: 'Business Intelligence Manager',
-    image: '/images/testimonials/martha-kioko.jpg',
+    image: '/pictures/Martha Kioko.jpg',
     quote: 'Working with Beta Solutions has been a game-changer for our organization. Their comprehensive approach to data analysis and visualization has enabled us to uncover valuable insights and drive strategic initiatives.'
   },
   {
     name: 'Joy Consolate',
     role: 'Data Strategy Director',
-    image: '/images/testimonials/joy-consolate.jpg',
+    image: '/pictures/Joy Consolate.jpg',
     quote: 'The team at Beta Solutions brings exceptional expertise and professionalism to every project. Their ability to translate complex data into actionable insights has been crucial to our success.'
   }
 ];
@@ -82,28 +82,28 @@ const teamMembers = [
   {
     name: 'Ogechi Daniel Koel',
     role: 'Biostatistician',
-    image: '/images/team/ogechi-daniel.jpg',
+    image: '/pictures/ogechi koel.jpg',
     expertise: ['Biostatistics', 'Statistical Analysis', 'Public Health'],
     bio: 'I am an apt Biostatistician determined in applying various statistical methods to inform decisions in medicine, public health and science.'
   },
   {
     name: 'Nobert Wafula',
     role: 'Data Analyst',
-    image: '/images/team/nobert-wafula.jpg',
+    image: '/pictures/nobert wafula.jpg',
     expertise: ['Data Analysis', 'Predictive Modeling', 'Business Intelligence'],
     bio: 'I\'m a data analyst passionate about turning data into actionable insights and building predictive models that drive smart, impactful decisions.'
   },
   {
     name: 'Enock Bereka',
     role: 'Data Scientist',
-    image: '/images/team/enock-bereka.jpg',
+    image: '/pictures/enock bereka.jpg',
     expertise: ['Machine Learning', 'Data Analysis', 'Statistical Modeling'],
     bio: 'I\'m a passionate data scientist driven by curiosity and a commitment to lifelong learning. I thrive on exploring new tools and techniques to uncover insights and solve real-world problems. My goal is to turn data into impactful solutions that drive informed decision-making and meaningful change.'
   },
   {
     name: 'Timothy Achala',
     role: 'AI Enthusiast & Computer Scientist',
-    image: '/images/team/timothy-achala.jpg',
+    image: '/pictures/timothy achalla.jpg',
     expertise: ['Artificial Intelligence', 'Machine Learning', 'Computer Science'],
     bio: 'I am an AI Enthusiast and computer scientist with a deep passion for data. My work lies at the intersection of theory and real-world application—leveraging mathematical rigor and computational power to extract meaningful insights from complex datasets. With a strong foundation in algorithms, statistics, and machine learning, I specialize in transforming raw data into actionable intelligence.'
   }
