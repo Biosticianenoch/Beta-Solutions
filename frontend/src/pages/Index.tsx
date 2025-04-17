@@ -96,14 +96,14 @@ const teamMembers = [
   {
     name: 'Enock Bereka',
     role: 'Data Scientist',
-    image: '/pictures/enock bereka.jpg',
+    image: '/pictures/Enock Bereka.jpg',
     expertise: ['Machine Learning', 'Data Analysis', 'Statistical Modeling'],
     bio: 'I\'m a passionate data scientist driven by curiosity and a commitment to lifelong learning. I thrive on exploring new tools and techniques to uncover insights and solve real-world problems. My goal is to turn data into impactful solutions that drive informed decision-making and meaningful change.'
   },
   {
     name: 'Timothy Achala',
     role: 'AI Enthusiast & Computer Scientist',
-    image: '/pictures/timothy achalla.jpg',
+    image: '/pictures/Timothy Achalla.jpg',
     expertise: ['Artificial Intelligence', 'Machine Learning', 'Computer Science'],
     bio: 'I am an AI Enthusiast and computer scientist with a deep passion for data. My work lies at the intersection of theory and real-world application—leveraging mathematical rigor and computational power to extract meaningful insights from complex datasets. With a strong foundation in algorithms, statistics, and machine learning, I specialize in transforming raw data into actionable intelligence.'
   }
@@ -174,10 +174,10 @@ const Index = () => {
                 Join thousands of learners worldwide in mastering data science, machine learning, and AI through our comprehensive courses and hands-on projects.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white">
                   <Link to="/courses">Get Started</Link>
                 </Button>
-                <Button size="lg" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">
+                <Button className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">
                   <Link to="/contact">Contact Us</Link>
                 </Button>
               </div>
@@ -280,7 +280,7 @@ const Index = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                  <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
                     <Link to="/signup">
                       Get Started <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
@@ -294,10 +294,8 @@ const Index = () => {
       
       {/* Mobile Menu Button */}
       <div className="md:hidden fixed top-4 right-4 z-50 menu-button">
-        <Button 
-          variant="ghost" 
-          size="icon" 
-          onClick={toggleMenu} 
+        <Button
+          onClick={toggleMenu}
           className="text-gray-600 hover:text-blue-600 bg-white/80 backdrop-blur-sm rounded-full shadow-lg"
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         >
@@ -319,9 +317,7 @@ const Index = () => {
           <div className="p-6 h-full flex flex-col">
             <div className="flex justify-between items-center mb-8">
               <h2 className="text-xl font-bold text-primary">Menu</h2>
-              <Button 
-                variant="ghost" 
-                size="icon" 
+              <Button
                 onClick={toggleMenu}
                 className="text-gray-600 hover:text-blue-600"
                 aria-label="Close menu"
@@ -386,13 +382,13 @@ const Index = () => {
             
             <div className="mt-auto pt-6 border-t border-gray-200">
               <div className="flex items-center justify-center space-x-4">
-                <Button variant="ghost" size="icon" className="text-gray-600 hover:text-blue-600">
+                <Button className="text-gray-600 hover:text-blue-600">
                   <Facebook className="h-5 w-5" />
                 </Button>
-                <Button variant="ghost" size="icon" className="text-gray-600 hover:text-blue-600">
+                <Button className="text-gray-600 hover:text-blue-600">
                   <Twitter className="h-5 w-5" />
                 </Button>
-                <Button variant="ghost" size="icon" className="text-gray-600 hover:text-blue-600">
+                <Button className="text-gray-600 hover:text-blue-600">
                   <Linkedin className="h-5 w-5" />
                 </Button>
               </div>
