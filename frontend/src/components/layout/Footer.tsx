@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-xl font-bold text-amber-500 mb-4">Data Science Hub</h3>
+            <h3 className="text-xl font-bold text-amber-500 mb-4">Beta Solutions</h3>
             <p className="mb-4">
               Empowering professionals with cutting-edge data science knowledge and skills.
             </p>
@@ -85,7 +85,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center">
-          <p>&copy; {new Date().getFullYear()} Data Science Hub. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Beta Solutions. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link to="/legal/privacy" className="hover:text-amber-500 transition-colors">Privacy Policy</Link>
             <Link to="/legal/terms" className="hover:text-amber-500 transition-colors">Terms of Service</Link>

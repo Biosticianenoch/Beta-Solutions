@@ -22,14 +22,14 @@ class EmailService:
             msg = MIMEMultipart()
             msg['From'] = self.sender_email
             msg['To'] = recipient_email
-            msg['Subject'] = 'Verify your email - Data Science Hub'
+            msg['Subject'] = 'Verify your email - Beta Solutions'
 
             # Create email body
             verification_link = f"{self.base_url}/verify-email?token={verification_token}"
             body = f"""
             <html>
                 <body>
-                    <h2>Welcome to Data Science Hub!</h2>
+                    <h2>Welcome to Beta Solutions!</h2>
                     <p>Thank you for signing up. Please verify your email address by clicking the link below:</p>
                     <p><a href="{verification_link}">Verify Email Address</a></p>
                     <p>This link will expire in 24 hours.</p>
@@ -58,7 +58,7 @@ class EmailService:
             msg = MIMEMultipart()
             msg['From'] = self.sender_email
             msg['To'] = recipient_email
-            msg['Subject'] = 'Password Reset Request - Data Science Hub'
+            msg['Subject'] = 'Password Reset Request - Beta Solutions'
 
             reset_link = f"{self.base_url}/reset-password?token={reset_token}"
             body = f"""

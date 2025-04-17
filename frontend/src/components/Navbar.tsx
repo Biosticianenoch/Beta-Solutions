@@ -100,7 +100,7 @@ const Navbar = () => {
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
               <Link to="/" className="text-xl font-bold text-gray-800 hover:text-gray-600 transition-colors">
-                Data Science Hub
+                Beta Solutions
               </Link>
             </div>
             {/* Desktop Navigation Links */}

@@ -71,7 +71,7 @@ class AdminService {
       {
         id: '1',
         name: 'Welcome Email',
-        subject: 'Welcome to Data Science Hub',
+        subject: 'Welcome to Beta Solutions',
         body: 'Welcome {{name}}! We\'re excited to have you on board.',
         variables: ['name'],
         lastModified: new Date()

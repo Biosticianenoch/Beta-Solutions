@@ -1,4 +1,4 @@
-# Data Science Hub
+# Beta Solutions
 
 A comprehensive platform for data science education, project management, and community collaboration.
 
