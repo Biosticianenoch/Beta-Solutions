@@ -30,7 +30,9 @@ const Navbar = () => {
     return location.pathname === path;
   };
 
+  // Always show public home
   const navLinks = [
+    { to: "/", label: "Home" },
     { to: "/courses", label: "Courses" },
     { to: "/team", label: "Team" },
     { to: "/services", label: "Services" },
@@ -39,12 +41,16 @@ const Navbar = () => {
     { to: "/contact", label: "Contact" },
   ];
 
-  const userLinks = user ? [
-    { to: "/profile", label: "Profile" },
-    { to: user.role === "admin" ? "/admin" : "/client-dashboard", label: "Dashboard" },
-  ] : [
-    { to: "/login", label: "Login" },
-  ];
+  // Authenticated user links
+  let userLinks = [] as { to: string; label: string }[];
+  if (user) {
+    userLinks.push({ to: "/profile", label: "Profile" });
+    if (user.role === "ADMIN") {
+      userLinks.push({ to: "/admin", label: "Admin" });
+    } else {
+      userLinks.push({ to: "/client-dashboard", label: "Dashboard" });
+    }
+  }
 
   // Close search when clicking outside
   useEffect(() => {

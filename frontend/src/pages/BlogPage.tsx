@@ -5,7 +5,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription }
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, Calendar, User, Clock, ArrowRight, Filter } from "lucide-react";
+import { Search, Calendar, User, Clock, ArrowRight, Filter, Mail } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Background } from '@/components/ui/background';
 
@@ -106,7 +106,7 @@ const BlogPage = () => {
 
   return (
     <Background 
-      image="/images/image (15).jpg"
+      image="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2670&auto=format&fit=crop"
       overlayOpacity={0.85}
     >
       <Layout>
@@ -218,6 +218,28 @@ const BlogPage = () => {
                 </Button>
               </div>
             )}
+
+            {/* Subscription Section */}
+            <div className="mt-16 bg-primary/5 rounded-lg p-8 text-center">
+              <h2 className="text-2xl font-bold text-primary mb-4">Subscribe to Our Weekly Newsletter</h2>
+              <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                Stay updated with the latest data science insights, tutorials, and industry news delivered straight to your inbox.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1"
+                />
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                  <Mail className="mr-2 h-4 w-4" />
+                  Subscribe
+                </Button>
+              </div>
+              <p className="text-sm text-muted-foreground mt-4">
+                We respect your privacy. Unsubscribe at any time.
+              </p>
+            </div>
           </div>
         </div>
       </Layout>

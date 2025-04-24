@@ -3,7 +3,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Background } from '@/components/ui/background';
 import { Link } from 'react-router-dom';
-import Navbar from '@/components/layout/Navbar';
+import { Layout } from '@/components/layout/Layout';
+import { PageLayout } from '@/components/layout/PageLayout';
 import { 
   ArrowRight, 
   BookOpen, 
@@ -122,281 +123,142 @@ At DataQuest Solutions, we are more than just a service provider—we are your p
 };
 
 const Index = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const toggleMenu = useCallback(() => {
-    setIsMenuOpen(prevState => {
-      const newState = !prevState;
-      document.body.style.overflow = newState ? 'hidden' : 'auto';
-      return newState;
-    });
-  }, []); // No dependencies needed since we're using functional updates
-
-  // Close menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      if (isMenuOpen && !target.closest('.mobile-menu') && !target.closest('.menu-button')) {
-        toggleMenu();
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.body.style.overflow = 'auto';
-    };
-  }, [isMenuOpen, toggleMenu]);
-
   return (
-    <div>
-      <Background 
-        image="/images/image (1).jpg"
-        overlayOpacity={0.85}
-      >
-        <Navbar />
-        <div className="container mx-auto py-8">
-          <div className="max-w-7xl mx-auto">
-            {/* Main Title */}
-            <div className="text-center mb-8">
-              <h1 className="text-6xl font-extrabold text-primary mb-2">
-                DataQuest Solutions
-              </h1>
-              <div className="h-1 w-32 bg-primary mx-auto rounded-full"></div>
-            </div>
-            
-            {/* Hero Section */}
-            <div className="text-center mb-16">
-              <h2 className="text-5xl font-bold text-primary mb-6">
-                Master Data Science with Expert Guidance
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-                Join thousands of learners worldwide in mastering data science, machine learning, and AI through our comprehensive courses and hands-on projects.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-                  <Link to="/courses">Get Started</Link>
-                </Button>
-                <Button className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">
-                  <Link to="/contact">Contact Us</Link>
-                </Button>
-              </div>
-            </div>
+    <Layout>
+      <PageLayout showHeader={false}>
+        {/* Main Title */}
+        <div className="text-center mb-8">
+          <h1 className="text-6xl font-extrabold text-primary mb-2">
+            DataQuest Solutions
+          </h1>
+          <div className="h-1 w-32 bg-primary mx-auto rounded-full"></div>
+        </div>
+        
+        {/* Hero Section */}
+        <div className="text-center mb-16">
+          <h2 className="text-5xl font-bold text-primary mb-6">
+            Master Data Science with Expert Guidance
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+            Join thousands of learners worldwide in mastering data science, machine learning, and AI through our comprehensive courses and hands-on projects.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+              <Link to="/courses">Get Started</Link>
+            </Button>
+            <Button className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">
+              <Link to="/contact">Contact Us</Link>
+            </Button>
+          </div>
+        </div>
 
-            {/* Features Section */}
-            <div className="mb-16">
-              <h2 className="text-3xl font-bold text-primary text-center mb-8">Why Choose DataQuest Solutions</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {features.map((feature, index) => (
-                  <Card key={index} className="bg-white/95 backdrop-blur-sm border-primary/20">
-                    <CardHeader>
-                      <div className="bg-primary/10 text-primary p-2 rounded-lg w-fit">
-                        {feature.icon}
-                      </div>
-                      <CardTitle>{feature.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground">{feature.description}</p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-
-            {/* Testimonials Section */}
-            <div className="mb-16">
-              <h2 className="text-3xl font-bold text-primary text-center mb-8">What Our Clients Say</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {testimonials.map((testimonial, index) => (
-                  <Card key={index} className="bg-white/95 backdrop-blur-sm border-primary/20">
-                    <CardHeader>
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-full overflow-hidden">
-                          <img 
-                            src={testimonial.image} 
-                            alt={testimonial.name}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        <div>
-                          <CardTitle className="text-lg">{testimonial.name}</CardTitle>
-                          <CardDescription>{testimonial.role}</CardDescription>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground italic">"{testimonial.quote}"</p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-
-            {/* Team Section */}
-            <div className="mb-16">
-              <h2 className="text-3xl font-bold text-primary text-center mb-8">Meet Our Team</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {teamMembers.map((member, index) => (
-                  <Card key={index} className="bg-white/95 backdrop-blur-sm border-primary/20">
-                    <CardHeader>
-                      <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4">
-                        <img 
-                          src={member.image} 
-                          alt={member.name}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <CardTitle className="text-center">{member.name}</CardTitle>
-                      <CardDescription className="text-center">{member.role}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="flex flex-wrap gap-2 justify-center mb-4">
-                        {member.expertise.map((skill, skillIndex) => (
-                          <span 
-                            key={skillIndex}
-                            className="px-2 py-1 bg-primary/10 text-primary rounded-full text-sm"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                      <p className="text-muted-foreground text-center text-sm">{member.bio}</p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-
-            {/* CTA Section */}
-            <div className="text-center">
-              <Card className="bg-white/95 backdrop-blur-sm border-primary/20 max-w-3xl mx-auto">
+        {/* Features Section */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-primary text-center mb-8">Why Choose DataQuest Solutions</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((feature, index) => (
+              <Card key={index} className="bg-white/95 backdrop-blur-sm border-primary/20">
                 <CardHeader>
-                  <div className="bg-primary/10 text-primary p-3 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                    <Zap className="h-8 w-8" />
+                  <div className="bg-primary/10 text-primary p-2 rounded-lg w-fit">
+                    {feature.icon}
                   </div>
-                  <CardTitle className="text-2xl">Ready to Start Your Data Science Journey?</CardTitle>
-                  <CardDescription className="text-lg">
-                    Join our community of learners and take the first step towards a rewarding career in data science.
-                  </CardDescription>
+                  <CardTitle>{feature.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                    <Link to="/signup">
-                      Get Started <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
+                  <p className="text-muted-foreground">{feature.description}</p>
                 </CardContent>
               </Card>
-            </div>
+            ))}
           </div>
         </div>
-      </Background>
-      
-      {/* Mobile Menu Button */}
-      <div className="md:hidden fixed top-4 right-4 z-50 menu-button">
-        <Button
-          onClick={toggleMenu}
-          className="text-gray-600 hover:text-blue-600 bg-white/80 backdrop-blur-sm rounded-full shadow-lg"
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-        >
-          {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </Button>
-      </div>
 
-      {/* Mobile Menu Overlay */}
-      <div 
-        className={`fixed inset-0 bg-black/50 transition-opacity duration-300 ease-in-out z-40 mobile-menu ${
-          isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
-      >
-        <div 
-          className={`fixed right-0 top-0 h-full w-72 bg-white transform transition-transform duration-300 ease-in-out mobile-menu ${
-            isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
-        >
-          <div className="p-6 h-full flex flex-col">
-            <div className="flex justify-between items-center mb-8">
-              <h2 className="text-xl font-bold text-primary">Menu</h2>
-              <Button
-                onClick={toggleMenu}
-                className="text-gray-600 hover:text-blue-600"
-                aria-label="Close menu"
-              >
-                <X className="h-6 w-6" />
-              </Button>
-            </div>
-            
-            <nav className="flex-1 space-y-6">
-              <div className="space-y-2">
-                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">Main</h3>
-                <Link 
-                  to="/" 
-                  className="flex items-center py-2 text-gray-700 hover:text-blue-600 transition-colors" 
-                  onClick={toggleMenu}
-                >
-                  <Home className="h-5 w-5 mr-3" />
-                  Home
-                </Link>
-                <Link 
-                  to="/courses" 
-                  className="flex items-center py-2 text-gray-700 hover:text-blue-600 transition-colors" 
-                  onClick={toggleMenu}
-                >
-                  <BookOpen className="h-5 w-5 mr-3" />
-                  Courses
-                </Link>
-              </div>
-              
-              <div className="space-y-2">
-                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">About</h3>
-                <Link 
-                  to="/about" 
-                  className="flex items-center py-2 text-gray-700 hover:text-blue-600 transition-colors" 
-                  onClick={toggleMenu}
-                >
-                  <Info className="h-5 w-5 mr-3" />
-                  About Us
-                </Link>
-                <Link 
-                  to="/team" 
-                  className="flex items-center py-2 text-gray-700 hover:text-blue-600 transition-colors" 
-                  onClick={toggleMenu}
-                >
-                  <Users className="h-5 w-5 mr-3" />
-                  Our Team
-                </Link>
-              </div>
-              
-              <div className="space-y-2">
-                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">Contact</h3>
-                <Link 
-                  to="/contact" 
-                  className="flex items-center py-2 text-gray-700 hover:text-blue-600 transition-colors" 
-                  onClick={toggleMenu}
-                >
-                  <Mail className="h-5 w-5 mr-3" />
-                  Contact Us
-                </Link>
-              </div>
-            </nav>
-            
-            <div className="mt-auto pt-6 border-t border-gray-200">
-              <div className="flex items-center justify-center space-x-4">
-                <Button className="text-gray-600 hover:text-blue-600">
-                  <Facebook className="h-5 w-5" />
-                </Button>
-                <Button className="text-gray-600 hover:text-blue-600">
-                  <Twitter className="h-5 w-5" />
-                </Button>
-                <Button className="text-gray-600 hover:text-blue-600">
-                  <Linkedin className="h-5 w-5" />
-                </Button>
-              </div>
-            </div>
+        {/* Testimonials Section */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-primary text-center mb-8">What Our Clients Say</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {testimonials.map((testimonial, index) => (
+              <Card key={index} className="bg-white/95 backdrop-blur-sm border-primary/20">
+                <CardHeader>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full overflow-hidden">
+                      <img 
+                        src={testimonial.image} 
+                        alt={testimonial.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div>
+                      <CardTitle className="text-lg">{testimonial.name}</CardTitle>
+                      <CardDescription>{testimonial.role}</CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground italic">"{testimonial.quote}"</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
-      </div>
-    </div>
+
+        {/* Team Section */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-primary text-center mb-8">Meet Our Team</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {teamMembers.map((member, index) => (
+              <Card key={index} className="bg-white/95 backdrop-blur-sm border-primary/20">
+                <CardHeader>
+                  <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4">
+                    <img 
+                      src={member.image} 
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <CardTitle className="text-center">{member.name}</CardTitle>
+                  <CardDescription className="text-center">{member.role}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-wrap gap-2 justify-center mb-4">
+                    {member.expertise.map((skill, skillIndex) => (
+                      <span 
+                        key={skillIndex}
+                        className="px-2 py-1 bg-primary/10 text-primary rounded-full text-sm"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="text-muted-foreground text-center text-sm">{member.bio}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA Section */}
+        <div className="text-center">
+          <Card className="bg-white/95 backdrop-blur-sm border-primary/20 max-w-3xl mx-auto">
+            <CardHeader>
+              <div className="bg-primary/10 text-primary p-3 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <Zap className="h-8 w-8" />
+              </div>
+              <CardTitle className="text-2xl">Ready to Start Your Data Science Journey?</CardTitle>
+              <CardDescription className="text-lg">
+                Join our community of learners and take the first step towards a rewarding career in data science.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                <Link to="/signup">
+                  Get Started <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </PageLayout>
+    </Layout>
   );
 };
 

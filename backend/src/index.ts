@@ -17,13 +17,16 @@ const app = express();
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
     ? process.env.FRONTEND_URL 
-    : 'http://localhost:5173',
+    : [
+        'http://localhost:5173',
+        'http://localhost:8080'
+      ],
   credentials: true
 }));
 app.use(express.json());
 
 // Request logging middleware
-app.use((req, res, next) => {
+app.use((req, _res, next) => {
   logInfo(`${req.method} ${req.url}`, {
     body: req.body,
     query: req.query,
@@ -39,7 +42,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/analytics', analyticsRoutes);
 
 // Error handling middleware
-app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+app.use((err: any, req: express.Request, _res: express.Response, next: express.NextFunction) => {
   logError(err, req);
   next(err);
 });
@@ -60,4 +63,4 @@ const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   logInfo(`Server is running on port ${PORT}`);
   logInfo(`API URL: http://localhost:${PORT}`);
-}); 
+});

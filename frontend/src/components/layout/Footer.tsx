@@ -1,80 +1,106 @@
 import { Link } from "react-router-dom";
-import { Facebook, Twitter, Instagram, Linkedin, Youtube, Mail } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin, Youtube, Mail, Github } from "lucide-react";
+import styles from "./Footer.module.css";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-gray-300 border-t border-gray-800">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div>
-            <h3 className="text-xl font-bold text-amber-500 mb-4">DataQuest Solutions</h3>
-            <p className="mb-4">
+    <footer className={styles.footer}>
+      <div className={styles.container}>
+        <div className={styles.grid}>
+          <div className={styles.section}>
+            <h2 className={styles.sectionTitle}>DataQuest Solutions</h2>
+            <p className={styles.sectionDescription}>
               Empowering professionals with cutting-edge data science knowledge and skills.
             </p>
-            <div className="flex space-x-4">
-              <a href="https://facebook.com/datasciencehub" target="_blank" rel="noopener noreferrer" className="hover:text-amber-500 transition-colors">
-                <Facebook className="h-5 w-5" />
+            <div className={styles.socialLinks}>
+              <a 
+                href="https://facebook.com/datasciencehub" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className={styles.socialLink}
+                title="Follow us on Facebook"
+              >
+                <Facebook className={styles.socialIcon} />
+                <span className={styles.screenReaderText}>Facebook</span>
               </a>
-              <a href="https://twitter.com/datasciencehub" target="_blank" rel="noopener noreferrer" className="hover:text-amber-500 transition-colors">
-                <Twitter className="h-5 w-5" />
+              <a 
+                href="https://twitter.com/datasciencehub" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className={styles.socialLink}
+                title="Follow us on Twitter"
+              >
+                <Twitter className={styles.socialIcon} />
+                <span className={styles.screenReaderText}>Twitter</span>
               </a>
-              <a href="https://instagram.com/datasciencehub" target="_blank" rel="noopener noreferrer" className="hover:text-amber-500 transition-colors">
-                <Instagram className="h-5 w-5" />
+              <a 
+                href="https://instagram.com/datasciencehub" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className={styles.socialLink}
+                title="Follow us on Instagram"
+              >
+                <Instagram className={styles.socialIcon} />
+                <span className={styles.screenReaderText}>Instagram</span>
               </a>
-              <a href="https://linkedin.com/company/datasciencehub" target="_blank" rel="noopener noreferrer" className="hover:text-amber-500 transition-colors">
-                <Linkedin className="h-5 w-5" />
+              <a 
+                href="https://linkedin.com/company/datasciencehub" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className={styles.socialLink}
+                title="Follow us on LinkedIn"
+              >
+                <Linkedin className={styles.socialIcon} />
+                <span className={styles.screenReaderText}>LinkedIn</span>
               </a>
-              <a href="https://youtube.com/datasciencehub" target="_blank" rel="noopener noreferrer" className="hover:text-amber-500 transition-colors">
-                <Youtube className="h-5 w-5" />
+              <a 
+                href="https://youtube.com/datasciencehub" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className={styles.socialLink}
+                title="Subscribe to our YouTube channel"
+              >
+                <Youtube className={styles.socialIcon} />
+                <span className={styles.screenReaderText}>YouTube</span>
+              </a>
+              <a
+                href="https://github.com/yourcompany"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialLink}
+                title="Visit our GitHub repository"
+              >
+                <Github className={styles.socialIcon} />
+                <span className={styles.screenReaderText}>GitHub</span>
               </a>
             </div>
           </div>
 
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/" className="hover:text-amber-500 transition-colors">Home</Link>
-              </li>
-              <li>
-                <Link to="/courses" className="hover:text-amber-500 transition-colors">Courses</Link>
-              </li>
-              <li>
-                <Link to="/services" className="hover:text-amber-500 transition-colors">Services</Link>
-              </li>
-              <li>
-                <Link to="/blog" className="hover:text-amber-500 transition-colors">Blog</Link>
-              </li>
-              <li>
-                <Link to="/about" className="hover:text-amber-500 transition-colors">About Us</Link>
-              </li>
-            </ul>
+          <div className={styles.section}>
+            <h2 className={styles.sectionTitle}>Quick Links</h2>
+            <nav className={styles.links}>
+              <Link to="/" className={styles.link}>Home</Link>
+              <Link to="/courses" className={styles.link}>Courses</Link>
+              <Link to="/services" className={styles.link}>Services</Link>
+              <Link to="/blog" className={styles.link}>Blog</Link>
+              <Link to="/about" className={styles.link}>About Us</Link>
+            </nav>
           </div>
 
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Resources</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/resources/tutorials" className="hover:text-amber-500 transition-colors">Free Tutorials</Link>
-              </li>
-              <li>
-                <Link to="/resources/webinars" className="hover:text-amber-500 transition-colors">Webinars</Link>
-              </li>
-              <li>
-                <Link to="/resources/ebooks" className="hover:text-amber-500 transition-colors">E-books</Link>
-              </li>
-              <li>
-                <Link to="/resources/case-studies" className="hover:text-amber-500 transition-colors">Case Studies</Link>
-              </li>
-              <li>
-                <Link to="/resources/faq" className="hover:text-amber-500 transition-colors">FAQ</Link>
-              </li>
-            </ul>
+          <div className={styles.section}>
+            <h2 className={styles.sectionTitle}>Resources</h2>
+            <nav className={styles.links}>
+              <Link to="/resources/tutorials" className={styles.link}>Free Tutorials</Link>
+              <Link to="/resources/webinars" className={styles.link}>Webinars</Link>
+              <Link to="/resources/ebooks" className={styles.link}>E-books</Link>
+              <Link to="/resources/case-studies" className={styles.link}>Case Studies</Link>
+              <Link to="/resources/faq" className={styles.link}>FAQ</Link>
+            </nav>
           </div>
 
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
-            <address className="not-italic">
+          <div className={styles.section}>
+            <h2 className={styles.sectionTitle}>Contact Us</h2>
+            <address className={styles.address}>
               <p>1234 Data Avenue</p>
               <p>Analytics City, AC 98765</p>
               <p className="mt-4 flex items-center">
@@ -84,13 +110,13 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center">
+        <div className={styles.copyright}>
           <p>&copy; {new Date().getFullYear()} DataQuest Solutions. All rights reserved.</p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link to="/legal/privacy" className="hover:text-amber-500 transition-colors">Privacy Policy</Link>
-            <Link to="/legal/terms" className="hover:text-amber-500 transition-colors">Terms of Service</Link>
-            <Link to="/legal/cookies" className="hover:text-amber-500 transition-colors">Cookie Policy</Link>
-          </div>
+          <nav className={styles.legalLinks}>
+            <Link to="/legal/privacy" className={styles.legalLink}>Privacy Policy</Link>
+            <Link to="/legal/terms" className={styles.legalLink}>Terms of Service</Link>
+            <Link to="/legal/cookies" className={styles.legalLink}>Cookie Policy</Link>
+          </nav>
         </div>
       </div>
     </footer>

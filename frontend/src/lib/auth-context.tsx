@@ -1,44 +1,5 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import api from './api';
-import { toast } from '@/hooks/use-toast';
-import { UserRole, getRolePermissions } from './roles';
-
-// Demo accounts for development
-const DEMO_ACCOUNTS = {
-  admin: {
-    email: 'admin@demo.com',
-    password: 'admin123',
-    user: {
-      id: '1',
-      name: 'Admin User',
-      email: 'admin@demo.com',
-      role: 'admin' as UserRole,
-      avatar: '/images/avatars/admin.jpg'
-    }
-  },
-  student: {
-    email: 'student@demo.com',
-    password: 'student123',
-    user: {
-      id: '2',
-      name: 'Demo Student',
-      email: 'student@demo.com',
-      role: 'student' as UserRole,
-      avatar: '/images/avatars/student.jpg'
-    }
-  },
-  client: {
-    email: 'client@demo.com',
-    password: 'client123',
-    user: {
-      id: '3',
-      name: 'Demo Client',
-      email: 'client@demo.com',
-      role: 'client' as UserRole,
-      avatar: '/images/avatars/client.jpg'
-    }
-  }
-};
+import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { UserRole } from './roles';
 
 export interface User {
   id: string;
@@ -48,146 +9,53 @@ export interface User {
   avatar?: string;
 }
 
-interface RegisterData {
-  name: string;
-  email: string;
-  password: string;
-  role: 'student' | 'client';
-  company?: string;
-  position?: string;
-  phone?: string;
-}
-
 interface AuthContextType {
-  user: User | null;
+  user: User;
   isAuthenticated: boolean;
-  login: (email: string, password: string) => Promise<void>;
-  register: (data: RegisterData) => Promise<void>;
+  login: () => Promise<void>;
+  register: () => Promise<void>;
   logout: () => void;
   isLoading: boolean;
   error: string | null;
 }
 
+const defaultUser: User = {
+  id: '1',
+  name: 'Demo User',
+  email: 'demo@dataquest.com',
+  role: UserRole.ADMIN,
+  avatar: 'https://ui-avatars.com/api/?name=Demo+User'
+};
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [user] = useState<User>(defaultUser);
+  const [isLoading] = useState(false);
+  const [error] = useState<string | null>(null);
 
-  useEffect(() => {
-    // Check for existing session
-    const checkAuth = async () => {
-      try {
-        const token = localStorage.getItem('auth_token');
-        if (token) {
-          // In a real app, validate token with backend
-          const userData = JSON.parse(localStorage.getItem('user_data') || '{}');
-          if (userData.id) {
-            setUser(userData);
-          }
-        }
-      } catch (err) {
-        setError('Authentication error');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    checkAuth();
-  }, []);
-
-  const login = async (email: string, password: string) => {
-    try {
-      setIsLoading(true);
-      setError(null);
-      
-      // Check for demo accounts first
-      const demoAccount = Object.values(DEMO_ACCOUNTS).find(
-        account => account.email === email && account.password === password
-      );
-
-      if (demoAccount) {
-        // Simulate API delay
-        await new Promise(resolve => setTimeout(resolve, 500));
-        
-        localStorage.setItem('auth_token', 'demo_token');
-        localStorage.setItem('user_data', JSON.stringify(demoAccount.user));
-        setUser(demoAccount.user);
-        return;
-      }
-      
-      // Proceed with normal API login
-      const response = await api.post('/auth/login', { email, password });
-      const userData = response.data;
-      
-      if (!userData.token || !userData.user) {
-        throw new Error('Invalid response from server');
-      }
-      
-      localStorage.setItem('auth_token', userData.token);
-      localStorage.setItem('user_data', JSON.stringify(userData.user));
-      setUser(userData.user);
-    } catch (err) {
-      const errorMessage = err instanceof Error 
-        ? err.message 
-        : err.response?.data?.error || 'Login failed. Please try again.';
-      setError(errorMessage);
-      throw new Error(errorMessage);
-    } finally {
-      setIsLoading(false);
-    }
+  const login = async () => {
+    // No-op
   };
 
-  const register = async (data: RegisterData) => {
-    try {
-      setIsLoading(true);
-      setError(null);
-      
-      // Validate required fields
-      if (!data.email || !data.password || !data.name) {
-        throw new Error('All fields are required');
-      }
-      
-      // Validate email format
-      if (!/\S+@\S+\.\S+/.test(data.email)) {
-        throw new Error('Invalid email format');
-      }
-      
-      // Validate password strength
-      if (data.password.length < 6) {
-        throw new Error('Password must be at least 6 characters');
-      }
-      
-      const response = await api.post('/auth/register', data);
-      const userData = response.data;
-      
-      if (!userData.token || !userData.user) {
-        throw new Error('Invalid response from server');
-      }
-      
-      localStorage.setItem('auth_token', userData.token);
-      localStorage.setItem('user_data', JSON.stringify(userData.user));
-      setUser(userData.user);
-    } catch (err) {
-      const errorMessage = err instanceof Error 
-        ? err.message 
-        : err.response?.data?.error || 'Registration failed. Please try again.';
-      setError(errorMessage);
-      throw new Error(errorMessage);
-    } finally {
-      setIsLoading(false);
-    }
+  const register = async () => {
+    // No-op
   };
 
   const logout = () => {
-    localStorage.removeItem('auth_token');
-    localStorage.removeItem('user_data');
-    setUser(null);
+    // No-op
   };
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated: !!user, login, register, logout, isLoading, error }}>
+    <AuthContext.Provider value={{ 
+      user, 
+      isAuthenticated: true, 
+      login, 
+      register, 
+      logout, 
+      isLoading, 
+      error 
+    }}>
       {children}
     </AuthContext.Provider>
   );

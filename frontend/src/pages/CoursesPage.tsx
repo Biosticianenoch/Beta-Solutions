@@ -40,7 +40,7 @@ const courses = [
     rating: 4.8,
     students: 120,
     progress: 0,
-    image: '/images/courses/spss.jpg',
+    image: '/images/image (1).jpg',
     category: 'Data Analysis',
     tags: ['SPSS', 'Statistics', 'Research']
   },
@@ -54,7 +54,7 @@ const courses = [
     rating: 4.7,
     students: 150,
     progress: 0,
-    image: '/images/courses/r-analysis.jpg',
+    image: '/images/image (2).jpg',
     category: 'Data Analysis',
     tags: ['R', 'Statistics', 'Visualization']
   },
@@ -68,7 +68,7 @@ const courses = [
     rating: 4.9,
     students: 180,
     progress: 0,
-    image: '/images/courses/r-ml.jpg',
+    image: '/images/image (3).jpg',
     category: 'Machine Learning',
     tags: ['R', 'Machine Learning', 'AI']
   },
@@ -82,7 +82,7 @@ const courses = [
     rating: 4.6,
     students: 90,
     progress: 0,
-    image: '/images/courses/spatial.jpg',
+    image: '/images/image (4).jpg',
     category: 'Data Analysis',
     tags: ['R', 'Spatial Analysis', 'GIS']
   },
@@ -96,7 +96,7 @@ const courses = [
     rating: 4.7,
     students: 110,
     progress: 0,
-    image: '/images/courses/time-series.jpg',
+    image: '/images/image (5).jpg',
     category: 'Data Analysis',
     tags: ['R', 'Time Series', 'Forecasting']
   },
@@ -110,7 +110,7 @@ const courses = [
     rating: 4.8,
     students: 85,
     progress: 0,
-    image: '/images/courses/survival.jpg',
+    image: '/images/image (6).jpg',
     category: 'Statistics',
     tags: ['R', 'Survival Analysis', 'Biostatistics']
   },
@@ -124,7 +124,7 @@ const courses = [
     rating: 4.5,
     students: 130,
     progress: 0,
-    image: '/images/courses/data-collection.jpg',
+    image: '/images/image (7).jpg',
     category: 'Data Collection',
     tags: ['ODK', 'CommCare', 'KOBO']
   },
@@ -138,7 +138,7 @@ const courses = [
     rating: 4.8,
     students: 200,
     progress: 0,
-    image: '/images/courses/python-analysis.jpg',
+    image: '/images/image (8).jpg',
     category: 'Data Analysis',
     tags: ['Python', 'Pandas', 'NumPy']
   },
@@ -152,7 +152,7 @@ const courses = [
     rating: 4.9,
     students: 160,
     progress: 0,
-    image: '/images/courses/python-ml.jpg',
+    image: '/images/image (9).jpg',
     category: 'Machine Learning',
     tags: ['Python', 'Machine Learning', 'AI']
   },
@@ -166,7 +166,7 @@ const courses = [
     rating: 4.9,
     students: 140,
     progress: 0,
-    image: '/images/courses/deep-learning.jpg',
+    image: '/images/image (10).jpg',
     category: 'AI',
     tags: ['Python', 'Deep Learning', 'AI']
   },
@@ -180,7 +180,7 @@ const courses = [
     rating: 4.7,
     students: 95,
     progress: 0,
-    image: '/images/courses/stata.jpg',
+    image: '/images/image (11).jpg',
     category: 'Data Analysis',
     tags: ['Stata', 'Statistics', 'Research']
   },
@@ -194,7 +194,7 @@ const courses = [
     rating: 4.8,
     students: 170,
     progress: 0,
-    image: '/images/courses/visualization.jpg',
+    image: '/images/image (12).jpg',
     category: 'Data Visualization',
     tags: ['Power BI', 'Tableau', 'Visualization']
   },
@@ -208,7 +208,7 @@ const courses = [
     rating: 4.6,
     students: 75,
     progress: 0,
-    image: '/images/courses/nvivo.jpg',
+    image: '/images/image (13).jpg',
     category: 'Qualitative Analysis',
     tags: ['NVivo', 'Qualitative Research', 'Analysis']
   },
@@ -222,7 +222,7 @@ const courses = [
     rating: 4.5,
     students: 65,
     progress: 0,
-    image: '/images/courses/dedoose.jpg',
+    image: '/images/image (14).jpg',
     category: 'Qualitative Analysis',
     tags: ['Dedoose', 'Qualitative Research', 'Analysis']
   },
@@ -236,7 +236,7 @@ const courses = [
     rating: 4.7,
     students: 120,
     progress: 0,
-    image: '/images/courses/graphic-design.jpg',
+    image: '/images/image (15).jpg',
     category: 'Design',
     tags: ['Graphic Design', 'Adobe', 'Visual Design']
   },
@@ -250,7 +250,7 @@ const courses = [
     rating: 4.8,
     students: 150,
     progress: 0,
-    image: '/images/courses/web-dev.jpg',
+    image: '/images/image (16).jpg',
     category: 'Web Development',
     tags: ['HTML', 'CSS', 'JavaScript']
   },
@@ -264,7 +264,7 @@ const courses = [
     rating: 4.9,
     students: 85,
     progress: 0,
-    image: '/images/courses/disease-modelling.jpg',
+    image: '/images/image (17).jpg',
     category: 'Public Health',
     tags: ['Epidemiology', 'Modeling', 'Public Health']
   },
@@ -278,7 +278,7 @@ const courses = [
     rating: 4.7,
     students: 130,
     progress: 0,
-    image: '/images/courses/sql.jpg',
+    image: '/images/image (1).jpg',
     category: 'Database',
     tags: ['SQL', 'Database', 'Data Management']
   }
@@ -318,7 +318,7 @@ const CoursesPage = () => {
 
   return (
     <Background 
-      image="/images/image (8).jpg"
+      image="https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=2670&auto=format&fit=crop"
       overlayOpacity={0.85}
     >
       <Layout>

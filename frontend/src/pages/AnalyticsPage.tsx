@@ -1,8 +1,8 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Background } from "@/components/ui/background";
 import { Layout } from "@/components/layout/Layout";
-import api from "@/lib/api";
 import { 
   Users, 
   Activity, 
@@ -11,9 +11,9 @@ import {
   LineChart, 
   PieChart,
   Clock,
-  AlertTriangle,
-  Loader2
+  AlertTriangle
 } from "lucide-react";
+import styles from "./AnalyticsPage.module.css";
 
 interface AnalyticsData {
   totalUsers: number;
@@ -34,25 +34,51 @@ interface AnalyticsData {
   }>;
 }
 
+// Mock data for analytics
+const mockAnalyticsData: AnalyticsData = {
+  totalUsers: 1250,
+  activeSessions: 85,
+  storageUsed: 2.5 * 1024, // 2.5 TB in GB
+  apiRequests: 15000,
+  performance: {
+    averageResponseTime: 120,
+    cpuUsage: 45,
+    memoryUsage: 60,
+    networkTraffic: 75
+  },
+  errors: [
+    {
+      id: "1",
+      level: "warning",
+      message: "High memory usage detected",
+      timestamp: new Date().toISOString()
+    },
+    {
+      id: "2",
+      level: "error",
+      message: "API endpoint timeout",
+      timestamp: new Date().toISOString()
+    }
+  ]
+};
+
+const getProgressWidth = (value: number, max: number = 100) => {
+  const percentage = Math.min(100, Math.round((value / max) * 100));
+  return Math.floor(percentage / 10) * 10;
+};
+
 export const AnalyticsPage = () => {
   const [data, setData] = useState<AnalyticsData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchAnalytics = async () => {
-      try {
-        setLoading(true);
-        const response = await api.get("/analytics");
-        setData(response.data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to fetch analytics");
-      } finally {
-        setLoading(false);
-      }
-    };
+    // Simulate loading delay
+    const timer = setTimeout(() => {
+      setData(mockAnalyticsData);
+      setLoading(false);
+    }, 1000);
 
-    fetchAnalytics();
+    return () => clearTimeout(timer);
   }, []);
 
   if (loading) {
@@ -66,26 +92,8 @@ export const AnalyticsPage = () => {
             <div className="text-center">
               <h1 className="text-4xl font-bold text-primary mb-4">Loading Analytics...</h1>
               <div className="flex justify-center">
-                <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                <Clock className="h-8 w-8 animate-spin text-primary" />
               </div>
-            </div>
-          </div>
-        </Layout>
-      </Background>
-    );
-  }
-
-  if (error) {
-    return (
-      <Background 
-        image="/images/image (3).jpg"
-        overlayOpacity={0.85}
-      >
-        <Layout>
-          <div className="container mx-auto py-8">
-            <div className="text-center">
-              <h1 className="text-4xl font-bold text-primary mb-4">Error Loading Analytics</h1>
-              <p className="text-muted-foreground">{error}</p>
             </div>
           </div>
         </Layout>
@@ -99,7 +107,7 @@ export const AnalyticsPage = () => {
       overlayOpacity={0.85}
     >
       <Layout>
-        <div className="container mx-auto py-8">
+        <div className="container mx-auto px-4 py-8">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <h1 className="text-4xl font-bold text-primary mb-4">Platform Analytics</h1>
@@ -164,7 +172,7 @@ export const AnalyticsPage = () => {
             </div>
 
             {/* Performance Metrics */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card className="bg-white/95 backdrop-blur-sm border-primary/20">
                 <CardHeader>
                   <CardTitle>System Performance</CardTitle>
@@ -176,10 +184,10 @@ export const AnalyticsPage = () => {
                       <span className="text-sm font-medium">Response Time</span>
                       <span className="text-sm text-muted-foreground">{data?.performance?.averageResponseTime || 0}ms</span>
                     </div>
-                    <div className="h-2 bg-primary/10 rounded-full overflow-hidden">
+                    <div className={styles.progressBar}>
                       <div 
-                        className="h-full bg-primary/20 rounded-full"
-                        style={{ width: `${Math.min(100, ((data?.performance?.averageResponseTime || 0) / 500) * 100)}%` }}
+                        className={styles.progressBarFill}
+                        data-width={getProgressWidth(data?.performance?.averageResponseTime || 0, 500)}
                       />
                     </div>
                   </div>
@@ -189,10 +197,10 @@ export const AnalyticsPage = () => {
                       <span className="text-sm font-medium">CPU Usage</span>
                       <span className="text-sm text-muted-foreground">{data?.performance?.cpuUsage || 0}%</span>
                     </div>
-                    <div className="h-2 bg-primary/10 rounded-full overflow-hidden">
+                    <div className={styles.progressBar}>
                       <div 
-                        className="h-full bg-primary/20 rounded-full"
-                        style={{ width: `${data?.performance?.cpuUsage || 0}%` }}
+                        className={styles.progressBarFill}
+                        data-width={getProgressWidth(data?.performance?.cpuUsage || 0)}
                       />
                     </div>
                   </div>
@@ -202,10 +210,10 @@ export const AnalyticsPage = () => {
                       <span className="text-sm font-medium">Memory Usage</span>
                       <span className="text-sm text-muted-foreground">{data?.performance?.memoryUsage || 0}%</span>
                     </div>
-                    <div className="h-2 bg-primary/10 rounded-full overflow-hidden">
+                    <div className={styles.progressBar}>
                       <div 
-                        className="h-full bg-primary/20 rounded-full"
-                        style={{ width: `${data?.performance?.memoryUsage || 0}%` }}
+                        className={styles.progressBarFill}
+                        data-width={getProgressWidth(data?.performance?.memoryUsage || 0)}
                       />
                     </div>
                   </div>
@@ -213,12 +221,12 @@ export const AnalyticsPage = () => {
                   <div>
                     <div className="flex justify-between mb-1">
                       <span className="text-sm font-medium">Network Traffic</span>
-                      <span className="text-sm text-muted-foreground">{data?.performance?.networkTraffic || 0} MB/s</span>
+                      <span className="text-sm text-muted-foreground">{data?.performance?.networkTraffic || 0}%</span>
                     </div>
-                    <div className="h-2 bg-primary/10 rounded-full overflow-hidden">
+                    <div className={styles.progressBar}>
                       <div 
-                        className="h-full bg-primary/20 rounded-full"
-                        style={{ width: `${Math.min(100, ((data?.performance?.networkTraffic || 0) / 200) * 100)}%` }}
+                        className={styles.progressBarFill}
+                        data-width={getProgressWidth(data?.performance?.networkTraffic || 0)}
                       />
                     </div>
                   </div>
@@ -228,28 +236,24 @@ export const AnalyticsPage = () => {
               <Card className="bg-white/95 backdrop-blur-sm border-primary/20">
                 <CardHeader>
                   <CardTitle>Recent Errors</CardTitle>
-                  <CardDescription>System errors and warnings</CardDescription>
+                  <CardDescription>System alerts and warnings</CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    {data?.errors && data.errors.length > 0 ? (
-                      data.errors.map((error) => (
-                        <div key={error.id} className="flex items-start space-x-4">
-                          <div className={`mt-1 ${error.level === 'error' ? 'text-red-500' : 'text-yellow-500'}`}>
-                            {error.level === 'error' ? <AlertTriangle className="h-4 w-4" /> : <Clock className="h-4 w-4" />}
-                          </div>
-                          <div>
-                            <p className="text-sm font-medium">{error.message}</p>
-                            <p className="text-xs text-muted-foreground">
-                              {new Date(error.timestamp).toLocaleString()}
-                            </p>
-                          </div>
-                        </div>
-                      ))
-                    ) : (
-                      <p className="text-sm text-muted-foreground">No errors reported</p>
-                    )}
-                  </div>
+                <CardContent className="space-y-4">
+                  {data?.errors.map((error) => (
+                    <div key={error.id} className={styles.errorItem}>
+                      <AlertTriangle 
+                        className={`${styles.errorIcon} ${
+                          error.level === "error" ? "text-red-500" : "text-yellow-500"
+                        }`}
+                      />
+                      <div className={styles.errorContent}>
+                        <p className={styles.errorMessage}>{error.message}</p>
+                        <p className={styles.errorTimestamp}>
+                          {new Date(error.timestamp).toLocaleString()}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
                 </CardContent>
               </Card>
             </div>
@@ -258,4 +262,6 @@ export const AnalyticsPage = () => {
       </Layout>
     </Background>
   );
-}; 
+};
+
+export default AnalyticsPage; 

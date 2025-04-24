@@ -105,7 +105,7 @@ export const ProjectsPage = () => {
         <PageHeader 
           title="Our Projects" 
           subtitle="Explore our portfolio of data science and analytics projects"
-          backgroundImage="/images/image (3).jpg"
+          backgroundImage="https://images.unsplash.com/photo-1460925895917-afd8278271c8?q=80&w=2670&auto=format&fit=crop"
           overlayOpacity={0.85}
         />
         
@@ -114,12 +114,9 @@ export const ProjectsPage = () => {
             <div className="w-full md:w-auto">
               <h1 className="text-3xl font-bold text-primary">Projects</h1>
               <p className="text-muted-foreground mt-2">
-                Manage and track your data science projects
+                Explore our portfolio of data science and analytics projects
               </p>
             </div>
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
-              Create New Project
-            </Button>
           </div>
 
           {/* Search and Filters */}
@@ -209,13 +206,17 @@ export const ProjectsPage = () => {
                   </div>
                 </CardContent>
                 <CardFooter className="flex justify-between">
-                  <Button variant="ghost" size="sm" className="text-primary hover:text-primary/90 hover:bg-primary/10">
-                    <FolderGit2 className="h-4 w-4 mr-1" />
-                    View Details
-                  </Button>
-                  <Button variant="ghost" size="sm" className="text-primary hover:text-primary/90 hover:bg-primary/10">
-                    Team <ArrowRight className="h-4 w-4 ml-1" />
-                  </Button>
+                  <Link to={`/projects/${project.id}`}>
+                    <Button variant="ghost" size="sm" className="text-primary hover:text-primary/90 hover:bg-primary/10">
+                      <FolderGit2 className="h-4 w-4 mr-1" />
+                      View Details
+                    </Button>
+                  </Link>
+                  <Link to={`/team/${project.id}`}>
+                    <Button variant="ghost" size="sm" className="text-primary hover:text-primary/90 hover:bg-primary/10">
+                      Team <ArrowRight className="h-4 w-4 ml-1" />
+                    </Button>
+                  </Link>
                 </CardFooter>
               </Card>
             ))}

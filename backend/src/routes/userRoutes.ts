@@ -5,6 +5,43 @@ import { auth } from '../middleware/auth';
 
 const router = express.Router();
 
+// User login
+import bcrypt from 'bcrypt';
+
+// In-memory user store
+const inMemoryUsers = [
+  {
+    id: '1', // Add a unique id for session logic
+    name: 'Admin User',
+    email: 'enochosenwafulah@gmail.com',
+    // bcrypt hash for 'p0o9i8u7y6t5r4e3w2q1'
+    password: '$2b$10$M5rKc7U4w1iQ0fFvQbYvH.9lE6rK0wM5K8uK1q5v5Q7v0Y1v0U1mO',
+    role: 'ADMIN',
+    status: 'active',
+    lastLogin: new Date(),
+    avatar: undefined
+  }
+];
+
+router.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = inMemoryUsers.find(u => u.email === email);
+    if (!user) {
+      return res.status(401).json({ error: 'Invalid email or password' });
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ error: 'Invalid email or password' });
+    }
+    const { password: _pw, ...userObj } = user;
+    res.json({ user: userObj, token: 'dummy-token' });
+  } catch (error) {
+    console.error('LOGIN ERROR:', error);
+    res.status(500).json({ error: 'Login error', details: error instanceof Error ? error.message : error });
+  }
+});
+
 // Get all users (admin only)
 router.get('/', adminMiddleware, async (req, res) => {
   try {

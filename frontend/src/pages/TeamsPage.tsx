@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import api from '../lib/api';
 import { Layout } from '@/components/layout/Layout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -76,7 +77,18 @@ export const TeamsPage = () => {
   const [selectedDepartment, setSelectedDepartment] = useState<string>('all');
   const [selectedAvailability, setSelectedAvailability] = useState<string>('all');
 
-  const filteredTeamMembers = mockTeamMembers.filter(member => {
+  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState<string | null>(null);
+
+useEffect(() => {
+  api.get('/team-members')
+    .then((res: any) => setTeamMembers(res.data))
+    .catch(() => setError('Failed to load team members'))
+    .finally(() => setLoading(false));
+}, []);
+
+const filteredTeamMembers = teamMembers.filter(member => {
     const matchesSearch = member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          member.role.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesDepartment = selectedDepartment === 'all' || member.department === selectedDepartment;
