@@ -112,7 +112,7 @@ const PaymentFormContent = ({ onSuccess, onError }: PaymentFormProps) => {
   );
 };
 
-const PaymentForm = (props: PaymentFormProps) => {
+export const PaymentForm = (props: PaymentFormProps) => {
   return (
     <Card className="max-w-md mx-auto">
       <CardHeader>
@@ -125,6 +125,4 @@ const PaymentForm = (props: PaymentFormProps) => {
       </CardContent>
     </Card>
   );
-};
-
-export default PaymentForm; 
+}; 
