@@ -1,3 +1,8 @@
+/**
+ * CoursesPage Component
+ * Displays a list of available courses with search, filtering, and pagination functionality.
+ */
+
 import { Layout } from "@/components/layout/Layout";
 import { Background } from "@/components/layout/Background";
 import { CourseList } from "@/components/courses/CourseList";
@@ -11,10 +16,11 @@ import { Pagination } from "@/components/ui/Pagination";
 import { Alert } from "@/components/ui/Alert";
 import { Skeleton } from "@/components/ui/skeleton";
 
-// Fetch course data from backend
+// API endpoint for fetching courses
 const API_URL = import.meta.env.VITE_API_URL;
 
 const CoursesPage = () => {
+  // State management for courses and UI
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -27,18 +33,21 @@ const CoursesPage = () => {
     sortBy: "newest",
   });
 
+  // Fetch courses when dependencies change
   useEffect(() => {
     const fetchCourses = async () => {
       try {
         setLoading(true);
         setError(null);
         
+        // Construct query parameters
         const queryParams = new URLSearchParams({
           page: currentPage.toString(),
           search: searchQuery,
           ...filters,
         });
 
+        // Fetch courses from API
         const response = await fetch(
           `${import.meta.env.VITE_API_URL}/api/courses?${queryParams}`
         );
@@ -61,21 +70,25 @@ const CoursesPage = () => {
     fetchCourses();
   }, [currentPage, searchQuery, filters]);
 
+  // Handle search query changes
   const handleSearch = (query: string) => {
     setSearchQuery(query);
-    setCurrentPage(1);
+    setCurrentPage(1); // Reset to first page on new search
   };
 
+  // Handle filter changes
   const handleFilterChange = (newFilters: typeof filters) => {
     setFilters(newFilters);
-    setCurrentPage(1);
+    setCurrentPage(1); // Reset to first page on filter change
   };
 
+  // Handle page changes
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // Display error message if fetch failed
   if (error) {
     return (
       <div className="container mx-auto px-4 py-8">
@@ -91,17 +104,23 @@ const CoursesPage = () => {
       <Layout>
         <div className="container mx-auto px-4 py-8">
           <div className="space-y-6">
+            {/* Page header */}
             <div>
               <h1 className="text-4xl font-bold tracking-tight">Our Courses</h1>
               <p className="text-muted-foreground mt-2">
                 Explore our comprehensive collection of data science and analysis courses.
               </p>
             </div>
+
+            {/* Search and filter controls */}
             <div className="mb-8">
               <SearchBar onSearch={handleSearch} />
               <FilterBar filters={filters} onFilterChange={handleFilterChange} />
             </div>
+
+            {/* Course list or loading state */}
             {loading ? (
+              // Loading skeleton
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[...Array(6)].map((_, index) => (
                   <div key={index} className="bg-white rounded-lg shadow-md p-6">
@@ -114,6 +133,7 @@ const CoursesPage = () => {
                 ))}
               </div>
             ) : courses.length > 0 ? (
+              // Course list with pagination
               <>
                 <CourseList courses={courses} />
                 <div className="mt-8">
@@ -125,6 +145,7 @@ const CoursesPage = () => {
                 </div>
               </>
             ) : (
+              // No courses found message
               <div className="text-center py-8">
                 <p className="text-gray-600">No courses found matching your criteria.</p>
               </div>
