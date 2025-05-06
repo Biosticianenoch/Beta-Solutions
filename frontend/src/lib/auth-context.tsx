@@ -119,8 +119,4 @@ export const useAuth = () => {
     throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
-};const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);from flask_cors import CORS
-
-# After you create your app:
-app = Flask(__name__)
-CORS(app, origins=["https://data-quest-solutions.vercel.app"]) 
+};
