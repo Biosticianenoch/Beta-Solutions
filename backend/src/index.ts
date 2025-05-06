@@ -6,8 +6,8 @@ import dashboardRoutes from './routes/dashboardRoutes';
 import userRoutes from './routes/userRoutes';
 import analyticsRoutes from './routes/analyticsRoutes';
 import healthRoutes from './routes/healthRoutes';
-import { errorHandler } from './utils/errorHandler';
-import { logError, logInfo } from './utils/logger';
+import coursesRoutes from './courses';
+import { errorHandler, logError, logInfo } from './utils/logger';
 
 dotenv.config();
 
@@ -40,6 +40,7 @@ app.use('/api/health', healthRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api/courses', coursesRoutes);
 
 // Error handling middleware
 app.use((err: any, req: express.Request, _res: express.Response, next: express.NextFunction) => {

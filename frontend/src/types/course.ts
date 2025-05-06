@@ -83,22 +83,33 @@ export interface Course {
   id: string;
   title: string;
   description: string;
-  instructor: string;
+  category: CourseCategory;
+  level: CourseLevel;
   duration: string;
-  level: 'Beginner' | 'Intermediate' | 'Advanced';
-  rating: number;
-  students: number;
-  image: string;
-  modules: Module[];
-  prerequisites?: string[]; // IDs of required courses
-  objectives: string[];
-  skills: string[];
-  category: string;
-  tags: string[];
-  createdAt: Date;
-  updatedAt: Date;
-  isPublished: boolean;
+  pdfUrl: string;
+  thumbnailUrl?: string;
+  instructor?: string;
   price?: number;
-  discount?: number;
-  certificate?: boolean;
+  rating?: number;
+  enrolledStudents?: number;
+  lastUpdated?: string;
+  objectives?: string[];
+  skills?: string[];
+  tags?: string[];
+}
+
+export enum CourseCategory {
+  DATA_ANALYSIS = "Data Analysis",
+  MACHINE_LEARNING = "Machine Learning",
+  DATA_COLLECTION = "Data Collection",
+  STATISTICAL_ANALYSIS = "Statistical Analysis",
+  DATA_VISUALIZATION = "Data Visualization",
+  QUALITATIVE_ANALYSIS = "Qualitative Analysis",
+  TOOLS_AND_SOFTWARE = "Tools and Software"
+}
+
+export enum CourseLevel {
+  BEGINNER = "Beginner",
+  INTERMEDIATE = "Intermediate",
+  ADVANCED = "Advanced"
 } 
