@@ -9,14 +9,14 @@ interface BackgroundProps {
 
 export const Background: React.FC<BackgroundProps> = ({
   children,
-  image = "/images/background.jpg",
+  image,
   overlayOpacity = 0.85,
 }) => {
   return (
     <div
       className={styles.background}
       style={{
-        "--background-image": `url(${image})`,
+        "--background-image": image ? `url(${image})` : "none",
         "--overlay-opacity": overlayOpacity,
       } as React.CSSProperties}
     >
