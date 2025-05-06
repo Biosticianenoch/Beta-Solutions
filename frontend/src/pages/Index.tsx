@@ -267,24 +267,24 @@ const Index = () => {
             </CardContent>
           </Card>
         </div>
+              {/* Auth section for demonstration or navigation */}
+        <div className="flex justify-end mb-4">
+          {isLoading ? null : isAuthenticated ? (
+            <div className="flex items-center gap-4">
+              <span className="text-primary font-semibold">Welcome, {user.name}</span>
+              <Button size="sm" variant="outline" onClick={logout}>Logout</Button>
+            </div>
+          ) : (
+            <div className="flex items-center gap-2">
+              <Button asChild size="sm" variant="outline"><Link to="/login">Login</Link></Button>
+              <Button asChild size="sm" variant="default"><Link to="/register">Register</Link></Button>
+            </div>
+          )}
+        </div>
       </PageLayout>
     </Layout>
   );
 };
 
-{/* Auth section for demonstration or navigation */}
-<div className="flex justify-end mb-4">
-  {isLoading ? null : isAuthenticated ? (
-    <div className="flex items-center gap-4">
-      <span className="text-primary font-semibold">Welcome, {user.name}</span>
-      <Button size="sm" variant="outline" onClick={logout}>Logout</Button>
-    </div>
-  ) : (
-    <div className="flex items-center gap-2">
-      <Button asChild size="sm" variant="outline"><Link to="/login">Login</Link></Button>
-      <Button asChild size="sm" variant="default"><Link to="/register">Register</Link></Button>
-    </div>
-  )}
-</div>
 
 export default Index;
