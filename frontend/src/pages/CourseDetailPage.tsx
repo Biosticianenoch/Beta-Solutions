@@ -4,19 +4,30 @@ import { Course } from "@/types/course";
 import { CourseDetailSkeleton } from "@/components/courses/CourseDetailSkeleton";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { FileText } from "lucide-react";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const CourseDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const [course, setCourse] = useState<Course | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isDownloading, setIsDownloading] = useState(false);
 
   useEffect(() => {
     const fetchCourse = async () => {
+      if (!id) {
+        setError('Course ID is required');
+        setLoading(false);
+        return;
+      }
+
       try {
         setLoading(true);
         setError(null);
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/courses/${id}`);
+        const response = await fetch(`${API_URL}/api/courses/${id}`);
         if (!response.ok) {
           throw new Error('Failed to fetch course details');
         }
@@ -31,6 +42,31 @@ export const CourseDetailPage = () => {
 
     fetchCourse();
   }, [id]);
+
+  const handleDownload = async () => {
+    if (!course?.id) return;
+
+    try {
+      setIsDownloading(true);
+      const response = await fetch(`${API_URL}/api/courses/${course.id}/pdf`);
+      if (!response.ok) throw new Error('Failed to download PDF');
+      
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${course.title || 'course'}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error('Error downloading PDF:', error);
+      alert('Failed to download PDF. Please try again later.');
+    } finally {
+      setIsDownloading(false);
+    }
+  };
 
   if (loading) {
     return <CourseDetailSkeleton />;
@@ -65,7 +101,10 @@ export const CourseDetailPage = () => {
             <span className="text-gray-600">{course.duration}</span>
           </div>
         </div>
-        <button className="btn btn-primary">Download PDF</button>
+        <Button onClick={handleDownload} disabled={isDownloading}>
+          <FileText className="w-4 h-4 mr-2" />
+          {isDownloading ? "Downloading..." : "Download PDF"}
+        </Button>
       </div>
 
       <div className="prose max-w-none mb-8">
@@ -73,7 +112,7 @@ export const CourseDetailPage = () => {
         <p>{course.description}</p>
       </div>
 
-      {course.objectives && (
+      {course.objectives && course.objectives.length > 0 && (
         <div className="mb-8">
           <h2 className="text-xl font-semibold mb-4">Learning Objectives</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -87,7 +126,7 @@ export const CourseDetailPage = () => {
         </div>
       )}
 
-      {course.skills && (
+      {course.skills && course.skills.length > 0 && (
         <div className="mb-8">
           <h2 className="text-xl font-semibold mb-4">Skills You'll Gain</h2>
           <div className="flex flex-wrap gap-2">
@@ -108,7 +147,7 @@ export const CourseDetailPage = () => {
           <p className="font-semibold mb-1">Instructor</p>
           <p className="text-gray-600">{course.instructor || 'DataQuest Team'}</p>
         </div>
-        <button className="btn btn-primary">Start Learning</button>
+        <Button variant="default">Start Learning</Button>
       </div>
     </div>
   );

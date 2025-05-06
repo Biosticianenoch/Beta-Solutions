@@ -6,6 +6,8 @@ import { FileText, Users, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 interface CourseCardProps {
   course: Course;
 }
@@ -16,7 +18,7 @@ export const CourseCard = ({ course }: CourseCardProps) => {
   const handleDownload = async () => {
     try {
       setIsDownloading(true);
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/courses/${course.id}/pdf`);
+      const response = await fetch(`${API_URL}/api/courses/${course.id}/pdf`);
       if (!response.ok) throw new Error('Failed to download PDF');
       
       const blob = await response.blob();

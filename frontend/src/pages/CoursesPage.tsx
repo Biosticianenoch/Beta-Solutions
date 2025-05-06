@@ -7,6 +7,8 @@ import { CourseCategory, CourseLevel } from "@/types/course";
 // Fetch course data from backend
 import { useEffect, useState } from "react";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const CoursesPage = () => {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
@@ -16,7 +18,7 @@ const CoursesPage = () => {
     const fetchCourses = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/courses`);
+        const response = await fetch(`${API_URL}/api/courses`);
         if (!response.ok) throw new Error("Failed to fetch courses");
         const data = await response.json();
         setCourses(data);
