@@ -1,246 +1,158 @@
 # DataQuest Solutions
 
-DataQuest Solutions is a modern platform empowering businesses, organizations, and individuals with cutting-edge data science education, analytics services, and a collaborative community. Our mission is to accelerate innovation and informed decision-making through accessible, high-quality learning and professional solutions.
+A comprehensive platform for data science and analysis courses, built with React (Vite) and Flask.
 
----
+## Live Demo
 
-## 🚀 Project Overview
+Visit our live application at: [DataQuest Solutions](https://data-quest-solutions-git-main-enocks-projects-27f604c8.vercel.app)
 
-DataQuest Solutions offers:
-- Interactive data science courses and certifications
-- Team and client management for analytics projects
-- Real-time progress tracking and performance analytics
-- Community features for networking and collaboration
-- Secure, role-based access for admins, clients, and learners
+## Project Structure
 
----
-
-## 🌟 Key Features
-
-### 🎓 Learning Platform & Courses
-- **Course Management**
-  - Interactive course catalog
-  - Progress tracking
-  - Module-based learning
-  - Assignment submission
-  - Achievement system
-  - Certificate generation
-
-- **Progress Tracking**
-  - Real-time progress monitoring
-  - Learning statistics
-  - Achievement badges
-  - Performance analytics
-  - Course completion tracking
-
-### 👥 User & Client Management
-- **Role-Based Access**
-  - Admin dashboard
-  - Client portal
-  - Student learning environment
-  - Profile management
-  - Custom permissions
-
-- **Authentication**
-  - Secure login/registration
-  - Role-based authorization
-  - Protected routes
-  - Session management
-
-### 📊 Project & Team Management
-- **Project Features**
-  - Project creation and tracking
-  - Team collaboration
-  - Resource allocation
-  - Progress monitoring
-  - Analytics dashboard
-
-- **Client Portal**
-  - Project overview
-  - Service requests
-  - Communication tools
-  - Analytics access
-
-### 📈 Reports & Analytics
-- **Reporting System**
-  - Custom report generation
-  - Analytics visualization
-  - Performance metrics
-  - Usage statistics
-  - Downloadable reports
-
-### 👥 Community & Collaboration
-- **Collaboration Tools**
-  - Team workspaces
-  - Resource sharing
-  - Community forums
-  - Blog platform
-  - Knowledge base
-
-## 🛠️ Tech Stack
-
-### Frontend
-- React + TypeScript
-- Vite
-- Tailwind CSS
-- shadcn/ui
-- React Router
-- React Query
-- Lucide Icons
-
-### Backend (if present)
-- Node.js + Express
-- MongoDB
-- JWT Authentication
-- Socket.IO
-
----
-
-## 🚦 Getting Started
-
-### Prerequisites
-- Node.js (v14 or higher)
-- npm or yarn
-- Git
-
-### Installation
-
-1. Clone the repository
-```bash
-git clone <YOUR_GIT_URL>
-cd Beta-Solutions
+```
+DataQuest-Solutions/
+├── frontend/           # React (Vite) frontend application
+├── backend/           # Flask backend API
+└── courses resorses/  # Course PDF resources
 ```
 
-2. Install dependencies
+## Quick Start
+
+1. Clone the repository:
 ```bash
-# Install frontend dependencies
+git clone https://github.com/yourusername/DataQuest-Solutions.git
+cd DataQuest-Solutions
+```
+
+2. Set up the backend:
+```bash
+cd backend
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+python init_db.py
+python run.py
+```
+
+3. Set up the frontend:
+```bash
 cd frontend
 npm install
-```
-
-3. Set up environment variables
-```bash
-# Frontend (.env)
-VITE_API_URL=http://localhost:5000
-
-# (Optional) Backend (.env)
-PORT=5000
-MONGODB_URI=your_mongodb_uri
-JWT_SECRET=your_jwt_secret
-```
-
-4. Start the development servers
-```bash
-# Start frontend server
-cd frontend
-npm run dev
-
-# (Optional) Start backend server
-cd ../backend
 npm run dev
 ```
 
-## 📁 Project Structure
+4. Access the application:
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:5000
 
-```
-Beta-Solutions/
-├── backend/
-│   ├── src/
-│   │   ├── controllers/
-│   │   ├── models/
-│   │   ├── routes/
-│   │   ├── middleware/
-│   │   └── utils/
-│   ├── package.json
-│   └── .env
-├── frontend/
-│   ├── src/
-│   │   ├── components/    # Reusable UI components
-│   │   ├── pages/         # Page-level components
-│   │   ├── hooks/         # Custom React hooks
-│   │   ├── context/       # React context providers
-│   │   ├── lib/           # Utility libraries
-│   │   └── utils/
-│   ├── package.json
-│   └── .env
-└── README.md
-```
+## Features
 
-## 🧩 Main Packages Used
+- Course browsing and searching
+- PDF course material downloads
+- User authentication and authorization
+- Payment processing with Stripe
+- Responsive design for all devices
+- Course filtering and sorting
+- Learning progress tracking
+
+## Technology Stack
 
 ### Frontend
-- React
-- TypeScript
-- Tailwind CSS
-- Shadcn UI
-- React Query
-- React Router
-- Lucide Icons
+- React with TypeScript
+- Vite for build tooling
+- Tailwind CSS for styling
+- React Router for navigation
+- Axios for API requests
 
 ### Backend
-- Node.js
-- Express
-- MongoDB
-- JWT Authentication
-- Socket.IO
+- Flask (Python)
+- SQLAlchemy for database ORM
+- Flask-Migrate for database migrations
+- Flask-CORS for CORS support
+- Stripe for payment processing
 
-## 🖥️ Main Pages
+## Development
 
-### Public Pages
-- Home
-- About
-- Contact
-- Services
-- Blog
-- Team
+### Environment Variables
 
-### Protected Pages
-- Dashboard (Role-specific)
-- Profile
-- Courses
-- Assignments
-- Projects
-- Reports
-- Progress
-- Analytics
+#### Frontend (.env)
+```
+VITE_API_URL=http://localhost:5000
+VITE_AUTH_TOKEN_KEY=auth_token
+VITE_USER_DATA_KEY=user_data
+```
 
-## 🔒 Security & Best Practices
+#### Frontend (.env.production)
+```
+VITE_API_URL=https://data-quest-solutions-api.vercel.app
+VITE_AUTH_TOKEN_KEY=auth_token
+VITE_USER_DATA_KEY=user_data
+```
 
-- Role-based access control
-- JWT authentication
-- Protected routes
-- Secure API endpoints
-- Data encryption
-- Session management
+#### Backend (.env)
+```
+FLASK_APP=run.py
+FLASK_ENV=development
+SECRET_KEY=your-secret-key-here
+DATABASE_URL=sqlite:///app.db
+STRIPE_SECRET_KEY=your_stripe_secret_key
+STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+```
 
-## 🤝 Contributing
+### Database Management
 
-We welcome contributions! To contribute:
+Initialize the database:
+```bash
+cd backend
+python init_db.py
+```
+
+Run migrations:
+```bash
+flask db migrate -m "Description of changes"
+flask db upgrade
+```
+
+### Adding New Courses
+
+1. Place PDF files in the `courses resorses` directory
+2. Update the course data in `backend/scripts/populate_courses.py`
+3. Run the database initialization script:
+```bash
+python init_db.py
+```
+
+## Deployment
+
+### Backend Deployment (Vercel)
+1. Set up a PostgreSQL database
+2. Configure environment variables in Vercel dashboard
+3. Deploy using Vercel CLI:
+```bash
+vercel
+```
+
+### Frontend Deployment (Vercel)
+1. Build the production version:
+```bash
+npm run build
+```
+2. Deploy to Vercel:
+```bash
+vercel
+```
+
+The application is automatically deployed to:
+- Frontend: https://data-quest-solutions-git-main-enocks-projects-27f604c8.vercel.app
+- Backend API: https://data-quest-solutions-api.vercel.app
+
+## Contributing
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
-## 📄 License
+## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👥 Authors & Maintainers
-
-- DataQuest Solutions Team (see /frontend/src/pages/Index.tsx for team listing)
-- See GitHub contributors for more
-
-## 🙏 Acknowledgments
-
-- Shadcn UI for the component library
-- Lucide for the icons
-- All contributors and supporters
-
-## 📞 Support
-
-For support, open an issue or email: support@dataquestsolutions.com
-
-
-For support, email support@datasciencehub.com or join our community forum.
+This project is licensed under the MIT License - see the LICENSE file for details.

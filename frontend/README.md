@@ -1,73 +1,135 @@
-# Welcome to your Lovable project
+# DataQuest Solutions Frontend
 
-## Project info
+The frontend application for DataQuest Solutions, built with React, TypeScript, and Vite.
 
-**URL**: https://lovable.dev/projects/2ea2707e-f82a-49c3-85db-a3ca08b698e1
+## Live Demo
 
-## How can I edit this code?
+Visit our live application at: [DataQuest Solutions](https://data-quest-solutions-git-main-enocks-projects-27f604c8.vercel.app)
 
-There are several ways of editing your application.
+## Features
 
-**Use Lovable**
+- Modern, responsive UI with Tailwind CSS
+- Type-safe development with TypeScript
+- Course browsing and searching
+- PDF course material downloads
+- User authentication
+- Payment processing with Stripe
+- Loading states and error handling
+- Responsive design for all devices
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/2ea2707e-f82a-49c3-85db-a3ca08b698e1) and start prompting.
+## Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- Node.js (v16 or higher)
+- npm or yarn
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. Install dependencies:
+```bash
+npm install
+```
 
-Follow these steps:
+2. Set up environment variables:
+Create a `.env` file in the root directory:
+```
+VITE_API_URL=http://localhost:5000
+VITE_AUTH_TOKEN_KEY=auth_token
+VITE_USER_DATA_KEY=user_data
+```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Start the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The application will be available at http://localhost:5173
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Project Structure
 
-**Use GitHub Codespaces**
+```
+frontend/
+├── src/
+│   ├── components/     # Reusable UI components
+│   │   ├── courses/   # Course-related components
+│   │   ├── layout/    # Layout components
+│   │   ├── payment/   # Payment-related components
+│   │   └── ui/        # Base UI components
+│   ├── pages/         # Page components
+│   ├── types/         # TypeScript type definitions
+│   ├── hooks/         # Custom React hooks
+│   ├── lib/           # Utility functions
+│   └── App.tsx        # Main application component
+├── public/            # Static assets
+└── index.html         # Entry HTML file
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Available Scripts
 
-## What technologies are used for this project?
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+- `npm run type-check` - Run TypeScript type checking
 
-This project is built with:
+## Component Library
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+The application uses a custom component library built with:
+- Tailwind CSS for styling
+- shadcn/ui for base components
+- Lucide icons for icons
 
-## How can I deploy this project?
+## State Management
 
-Simply open [Lovable](https://lovable.dev/projects/2ea2707e-f82a-49c3-85db-a3ca08b698e1) and click on Share -> Publish.
+- React Context for global state
+- React Query for server state
+- Local state with useState/useReducer
 
-## Can I connect a custom domain to my Lovable project?
+## API Integration
 
-Yes it is!
+The frontend communicates with the backend API using:
+- Fetch API for HTTP requests
+- Environment variables for API configuration
+- Type-safe API responses
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Development Guidelines
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+1. Follow TypeScript best practices
+2. Use functional components with hooks
+3. Implement proper error handling
+4. Add loading states for async operations
+5. Write meaningful component documentation
+6. Follow the established project structure
+
+## Building for Production
+
+1. Update environment variables in `.env.production`:
+```
+VITE_API_URL=https://data-quest-solutions-api.vercel.app
+VITE_AUTH_TOKEN_KEY=auth_token
+VITE_USER_DATA_KEY=user_data
+```
+
+2. Build the application:
+```bash
+npm run build
+```
+
+3. Deploy to Vercel:
+```bash
+vercel
+```
+
+The production application is available at: https://data-quest-solutions-git-main-enocks-projects-27f604c8.vercel.app
+
+## Contributing
+
+1. Follow the TypeScript and React best practices
+2. Write meaningful commit messages
+3. Update documentation as needed
+4. Test your changes thoroughly
+
+## License
+
+This project is licensed under the MIT License.
