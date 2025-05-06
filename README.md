@@ -1,10 +1,13 @@
 # DataQuest Solutions
 
+[![Deployment Status](https://vercel.com/button)](https://data-quest-solutions-git-main-enocks-projects-27f604c8.vercel.app)
+
 A comprehensive platform for data science and analysis courses, built with React (Vite) and Flask.
 
 ## Live Demo
 
-Visit our live application at: [DataQuest Solutions](https://data-quest-solutions-git-main-enocks-projects-27f604c8.vercel.app)
+✅ The frontend is live and working at: [DataQuest Solutions](https://data-quest-solutions-git-main-enocks-projects-27f604c8.vercel.app)
+
 
 ## Project Structure
 
@@ -49,7 +52,7 @@ npm run dev
 - Course browsing and searching
 - PDF course material downloads
 - User authentication and authorization
-- Payment processing with Stripe
+- Payment processing with Stripe (frontend: @stripe/react-stripe-js, @stripe/stripe-js)
 - Responsive design for all devices
 - Course filtering and sorting
 - Learning progress tracking
@@ -144,6 +147,19 @@ vercel
 The application is automatically deployed to:
 - Frontend: https://data-quest-solutions-git-main-enocks-projects-27f604c8.vercel.app
 - Backend API: https://data-quest-solutions-api.vercel.app
+
+### Stripe Integration
+- The frontend uses `@stripe/react-stripe-js` and `@stripe/stripe-js` for payment processing. Ensure Stripe API keys are set in environment variables for both frontend and backend.
+
+### Reporting Issues
+- If you encounter deployment or runtime errors, please create an issue or contact a maintainer. Include logs, screenshots, or steps to reproduce.
+
+## Changelog
+
+- **2025-05-06:**
+  - Fixed frontend build and deployment issues (syntax, Stripe integration, React component structure).
+  - Confirmed live deployment and working authentication/payment flows.
+  - README improved for clarity and up-to-date deployment info.
 
 ## Contributing
 
