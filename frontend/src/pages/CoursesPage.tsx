@@ -9,7 +9,7 @@ import { SearchBar } from "@/components/courses/SearchBar";
 import { FilterBar } from "@/components/courses/FilterBar";
 import { Pagination } from "@/components/ui/Pagination";
 import { Alert } from "@/components/ui/Alert";
-import { Skeleton } from "@/components/ui/Skeleton";
+import { Skeleton } from "@/components/ui/skeleton";
 
 // Fetch course data from backend
 const API_URL = import.meta.env.VITE_API_URL;
