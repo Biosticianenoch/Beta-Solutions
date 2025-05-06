@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -27,7 +28,7 @@ interface PaymentFormProps {
   onError?: (error: Error) => void;
 }
 
-
+export const PaymentForm = ({ courseId, amount, onSuccess, onError }: PaymentFormProps) => {
   const stripe = useStripe();
   const elements = useElements();
   const { toast } = useToast();
@@ -231,12 +232,3 @@ interface PaymentFormProps {
     </form>
   );
 };
-
-export const PaymentForm = () => {
-  return (
-    <div className="max-w-md mx-auto p-6 border rounded bg-white text-center">
-      <h2 className="text-xl font-bold mb-4">Payment Unavailable</h2>
-      <p className="text-muted-foreground">Payments are currently disabled or unsupported on this site.</p>
-    </div>
-  );
-}; 
