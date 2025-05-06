@@ -13,20 +13,21 @@ const CoursesPage = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    setLoading(true);
-    fetch("/api/courses")
-      .then(res => {
-        if (!res.ok) throw new Error("Failed to fetch courses");
-        return res.json();
-      })
-      .then(data => {
+    const fetchCourses = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/courses`);
+        if (!response.ok) throw new Error("Failed to fetch courses");
+        const data = await response.json();
         setCourses(data);
+      } catch (e) {
+        setError(e instanceof Error ? e.message : "An error occurred");
+      } finally {
         setLoading(false);
-      })
-      .catch(e => {
-        setError(e.message);
-        setLoading(false);
-      });
+      }
+    };
+
+    fetchCourses();
   }, []);
 
   return (
@@ -40,27 +41,18 @@ const CoursesPage = () => {
                 Explore our comprehensive collection of data science and analysis courses.
               </p>
             </div>
-            {loading && <div>Loading courses...</div>}
-            {error && <div className="text-red-500">{error}</div>}
-            {!loading && !error && (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {courses.map(course => (
-                  <div key={course.id} className="border rounded-lg p-4 shadow-sm bg-white flex flex-col justify-between">
-                    <div>
-                      <h2 className="text-xl font-semibold mb-2">{course.title}</h2>
-                      <p className="mb-2 text-gray-700">{course.description}</p>
-                      <div className="mb-2 text-sm text-gray-500">Instructor: {course.instructor}</div>
-                      <div className="mb-2 text-sm text-gray-500">Price: ${course.price}</div>
-                    </div>
-                    <a
-                      href={`/courses/${course.id}`}
-                      className="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-center"
-                    >
-                      View Details
-                    </a>
-                  </div>
-                ))}
+            {error ? (
+              <div className="text-center py-12">
+                <p className="text-red-500">{error}</p>
+                <button
+                  onClick={() => window.location.reload()}
+                  className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                >
+                  Try Again
+                </button>
               </div>
+            ) : (
+              <CourseList courses={courses} isLoading={loading} />
             )}
           </div>
         </div>

@@ -1,98 +1,115 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Layout } from "@/components/layout/Layout";
-import { Background } from "@/components/layout/Background";
-
-interface Course {
-  id: string;
-  title: string;
-  description: string;
-  price: number;
-  pdf: string;
-  instructor: string;
-  status: string;
-  createdAt: string;
-  updatedAt: string;
-}
+import { Course } from "@/types/course";
+import { CourseDetailSkeleton } from "@/components/courses/CourseDetailSkeleton";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { AlertCircle } from "lucide-react";
 
 export const CourseDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const [course, setCourse] = useState<Course | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [paid, setPaid] = useState(false);
-  const [paying, setPaying] = useState(false);
-  const [payError, setPayError] = useState<string | null>(null);
 
   useEffect(() => {
-    setLoading(true);
-    fetch(`/api/courses/${id}`)
-      .then(res => {
-        if (!res.ok) throw new Error("Failed to fetch course");
-        return res.json();
-      })
-      .then(data => {
+    const fetchCourse = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/courses/${id}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch course details');
+        }
+        const data = await response.json();
         setCourse(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'An error occurred while fetching the course');
+      } finally {
         setLoading(false);
-      })
-      .catch(e => {
-        setError(e.message);
-        setLoading(false);
-      });
+      }
+    };
+
+    fetchCourse();
   }, [id]);
 
-  const handlePay = async () => {
-    setPaying(true);
-    setPayError(null);
-    try {
-      const res = await fetch(`/api/courses/${id}/pay`, { method: "POST" });
-      if (!res.ok) throw new Error("Payment failed");
-      setPaid(true);
-    } catch (e: any) {
-      setPayError(e.message);
-    } finally {
-      setPaying(false);
-    }
-  };
+  if (loading) {
+    return <CourseDetailSkeleton />;
+  }
 
-  if (loading) return <div className="p-8">Loading...</div>;
-  if (error) return <div className="p-8 text-red-500">{error}</div>;
-  if (!course) return <div className="p-8">Course not found.</div>;
+  if (error) {
+    return (
+      <Alert variant="destructive">
+        <AlertCircle className="h-4 w-4" />
+        <AlertDescription>{error}</AlertDescription>
+      </Alert>
+    );
+  }
+
+  if (!course) {
+    return (
+      <Alert>
+        <AlertCircle className="h-4 w-4" />
+        <AlertDescription>Course not found</AlertDescription>
+      </Alert>
+    );
+  }
 
   return (
-    <Background>
-      <Layout>
-        <div className="container mx-auto px-4 py-8 max-w-2xl">
-          <h1 className="text-3xl font-bold mb-4">{course.title}</h1>
-          <p className="mb-2 text-gray-700">{course.description}</p>
-          <div className="mb-2">Instructor: <span className="font-semibold">{course.instructor}</span></div>
-          <div className="mb-2">Price: <span className="font-semibold">${course.price}</span></div>
-          <div className="mb-2">Status: <span className="font-semibold">{course.status}</span></div>
-          <div className="mb-6 text-sm text-gray-500">Last updated: {course.updatedAt}</div>
-
-          {course.price > 0 && !paid ? (
-            <div>
-              <button
-                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
-                onClick={handlePay}
-                disabled={paying}
-              >
-                {paying ? "Processing..." : `Purchase for $${course.price}`}
-              </button>
-              {payError && <div className="text-red-500 mt-2">{payError}</div>}
-            </div>
-          ) : (
-            <a
-              href={`/api/courses/${course.id}/resource`}
-              className="inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 mt-4"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Download Resource (PDF)
-            </a>
-          )}
+    <div className="bg-white rounded-lg shadow-lg p-8">
+      <div className="flex justify-between items-start mb-6">
+        <div className="space-y-4">
+          <h1 className="text-3xl font-bold">{course.title}</h1>
+          <div className="flex items-center gap-4">
+            <span className="text-gray-600">{course.category}</span>
+            <span className="text-gray-600">{course.level}</span>
+            <span className="text-gray-600">{course.duration}</span>
+          </div>
         </div>
-      </Layout>
-    </Background>
+        <button className="btn btn-primary">Download PDF</button>
+      </div>
+
+      <div className="prose max-w-none mb-8">
+        <h2 className="text-xl font-semibold mb-4">Description</h2>
+        <p>{course.description}</p>
+      </div>
+
+      {course.objectives && (
+        <div className="mb-8">
+          <h2 className="text-xl font-semibold mb-4">Learning Objectives</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {course.objectives.map((objective, index) => (
+              <div key={index} className="flex items-start gap-2">
+                <span>•</span>
+                <span>{objective}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {course.skills && (
+        <div className="mb-8">
+          <h2 className="text-xl font-semibold mb-4">Skills You'll Gain</h2>
+          <div className="flex flex-wrap gap-2">
+            {course.skills.map((skill, index) => (
+              <span
+                key={index}
+                className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div className="flex justify-between items-center pt-6 border-t">
+        <div>
+          <p className="font-semibold mb-1">Instructor</p>
+          <p className="text-gray-600">{course.instructor || 'DataQuest Team'}</p>
+        </div>
+        <button className="btn btn-primary">Start Learning</button>
+      </div>
+    </div>
   );
 };

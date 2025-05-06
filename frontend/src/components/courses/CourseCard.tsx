@@ -4,12 +4,38 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { FileText, Users, Star } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 interface CourseCardProps {
   course: Course;
 }
 
 export const CourseCard = ({ course }: CourseCardProps) => {
+  const [isDownloading, setIsDownloading] = useState(false);
+
+  const handleDownload = async () => {
+    try {
+      setIsDownloading(true);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/courses/${course.id}/pdf`);
+      if (!response.ok) throw new Error('Failed to download PDF');
+      
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${course.title}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error('Error downloading PDF:', error);
+      alert('Failed to download PDF. Please try again later.');
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
   return (
     <Card className="h-full flex flex-col">
       <CardHeader>
@@ -44,11 +70,9 @@ export const CourseCard = ({ course }: CourseCardProps) => {
             View Details
           </Link>
         </Button>
-        <Button variant="default" asChild>
-          <a href={course.pdfUrl} target="_blank" rel="noopener noreferrer">
-            <FileText className="w-4 h-4 mr-2" />
-            Download PDF
-          </a>
+        <Button variant="default" onClick={handleDownload} disabled={isDownloading}>
+          <FileText className="w-4 h-4 mr-2" />
+          {isDownloading ? "Downloading..." : "Download PDF"}
         </Button>
       </CardFooter>
     </Card>
