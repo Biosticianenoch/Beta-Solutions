@@ -20,7 +20,7 @@ import { ReportsPage } from "./pages/ReportsPage";
 import { AssignmentsPage } from "./pages/AssignmentsPage";
 import SearchPage from './pages/SearchPage';
 import { AnalyticsPage } from './pages/AnalyticsPage';
-import PaymentPage from "./pages/PaymentPage";
+import { PaymentPage } from "./pages/PaymentPage";
 
 const queryClient = new QueryClient();
 
