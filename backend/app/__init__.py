@@ -14,7 +14,7 @@ def create_app(config_class=Config):
     # Initialize extensions
     db.init_app(app)
     migrate.init_app(app, db)
-    CORS(app)
+    CORS(app, origins=["https://data-quest-solutions.vercel.app"], supports_credentials=True)
 
     # Register blueprints
     from app.routes.course_routes import course_bp
