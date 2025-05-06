@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useAuth } from '@/lib/auth-context';
+import { Navigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -68,6 +70,9 @@ const adminData = {
 };
 
 const AdminPage = () => {
+  const { isAuthenticated, isLoading } = useAuth();
+  if (isLoading) return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
+  if (!isAuthenticated) return <Navigate to="/login" />;
   const [activeTab, setActiveTab] = useState("overview");
   const { data: stats, loading, error } = useAnalytics();
   const [searchQuery, setSearchQuery] = useState('');

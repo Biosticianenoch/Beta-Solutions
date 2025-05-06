@@ -1,4 +1,6 @@
 import React from "react";
+import { useAuth } from '@/lib/auth-context';
+import { Navigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Background } from "@/components/ui/background";
@@ -68,6 +70,9 @@ const getProgressWidth = (value: number, max: number = 100) => {
 };
 
 export const AnalyticsPage = () => {
+  const { isAuthenticated, isLoading } = useAuth();
+  if (isLoading) return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
+  if (!isAuthenticated) return <Navigate to="/login" />;
   const [data, setData] = useState<AnalyticsData | null>(null);
   const [loading, setLoading] = useState(true);
 

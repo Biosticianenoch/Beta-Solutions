@@ -4,6 +4,8 @@
  */
 
 import { Layout } from "@/components/layout/Layout";
+import { useAuth } from '@/lib/auth-context';
+import { Navigate } from 'react-router-dom';
 import { Background } from "@/components/layout/Background";
 import { CourseList } from "@/components/courses/CourseList";
 import { Course } from "@/types/course";
@@ -20,6 +22,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 const API_URL = import.meta.env.VITE_API_URL;
 
 const CoursesPage = () => {
+  const { isAuthenticated, isLoading } = useAuth();
+  if (isLoading) return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
+  if (!isAuthenticated) return <Navigate to="/login" />;
   // State management for courses and UI
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);

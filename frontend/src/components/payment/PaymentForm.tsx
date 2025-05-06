@@ -3,13 +3,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+
 import { useToast } from "@/components/ui/use-toast";
 import axios from "axios";
 
 // Initialize Stripe
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+
 
 interface PaymentMethod {
   id: string;
@@ -28,7 +27,7 @@ interface PaymentFormProps {
   onError?: (error: Error) => void;
 }
 
-const PaymentFormContent = ({ courseId, amount, onSuccess, onError }: PaymentFormProps) => {
+
   const stripe = useStripe();
   const elements = useElements();
   const { toast } = useToast();
@@ -233,34 +232,11 @@ const PaymentFormContent = ({ courseId, amount, onSuccess, onError }: PaymentFor
   );
 };
 
-export const PaymentForm = (props: PaymentFormProps) => {
-  const stripeKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY;
-
-  if (!stripeKey) {
-    return (
-      <Card className="max-w-md mx-auto">
-        <CardHeader>
-          <CardTitle>Payment System Unavailable</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-muted-foreground">
-            The payment system is currently unavailable. Please try again later or contact support.
-          </p>
-        </CardContent>
-      </Card>
-    );
-  }
-
+export const PaymentForm = () => {
   return (
-    <Card className="max-w-md mx-auto">
-      <CardHeader>
-        <CardTitle>Payment Details</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Elements stripe={stripePromise}>
-          <PaymentFormContent {...props} />
-        </Elements>
-      </CardContent>
-    </Card>
+    <div className="max-w-md mx-auto p-6 border rounded bg-white text-center">
+      <h2 className="text-xl font-bold mb-4">Payment Unavailable</h2>
+      <p className="text-muted-foreground">Payments are currently disabled or unsupported on this site.</p>
+    </div>
   );
 }; 

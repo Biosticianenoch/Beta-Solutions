@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useAuth } from '@/lib/auth-context';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Background } from '@/components/ui/background';
@@ -123,6 +124,7 @@ At DataQuest Solutions, we are more than just a service provider—we are your p
 };
 
 const Index = () => {
+  const { user, isAuthenticated, logout, isLoading } = useAuth();
   return (
     <Layout>
       <PageLayout showHeader={false}>
@@ -249,11 +251,19 @@ const Index = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                <Link to="/signup">
-                  Get Started <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+              {isAuthenticated ? (
+  <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
+    <Link to="/dashboard">
+      Go to Dashboard <ArrowRight className="ml-2 h-4 w-4" />
+    </Link>
+  </Button>
+) : (
+  <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
+    <Link to="/register">
+      Get Started <ArrowRight className="ml-2 h-4 w-4" />
+    </Link>
+  </Button>
+)}
             </CardContent>
           </Card>
         </div>
@@ -261,5 +271,20 @@ const Index = () => {
     </Layout>
   );
 };
+
+{/* Auth section for demonstration or navigation */}
+<div className="flex justify-end mb-4">
+  {isLoading ? null : isAuthenticated ? (
+    <div className="flex items-center gap-4">
+      <span className="text-primary font-semibold">Welcome, {user.name}</span>
+      <Button size="sm" variant="outline" onClick={logout}>Logout</Button>
+    </div>
+  ) : (
+    <div className="flex items-center gap-2">
+      <Button asChild size="sm" variant="outline"><Link to="/login">Login</Link></Button>
+      <Button asChild size="sm" variant="default"><Link to="/register">Register</Link></Button>
+    </div>
+  )}
+</div>
 
 export default Index;

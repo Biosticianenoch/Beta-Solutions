@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useAuth } from '@/lib/auth-context';
+import { Navigate } from 'react-router-dom';
 import api from '../lib/api';
 import { Layout } from '@/components/layout/Layout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -23,6 +25,9 @@ interface Assignment {
 }
 
 export const AssignmentsPage = () => {
+  const { isAuthenticated, isLoading } = useAuth();
+  if (isLoading) return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
+  if (!isAuthenticated) return <Navigate to="/login" />;
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCourse, setSelectedCourse] = useState<string>('all');
   const [selectedStatus, setSelectedStatus] = useState<string>('all');

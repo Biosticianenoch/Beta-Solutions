@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useAuth } from '@/lib/auth-context';
+import { Navigate } from 'react-router-dom';
 import { Layout } from "@/components/layout/Layout";
 import PageHeader from "@/components/layout/PageHeader";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
@@ -84,6 +86,9 @@ const categories = [
 ];
 
 export const ProjectsPage = () => {
+  const { isAuthenticated, isLoading } = useAuth();
+  if (isLoading) return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
+  if (!isAuthenticated) return <Navigate to="/login" />;
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("All");
 
